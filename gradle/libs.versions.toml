@@ -1,0 +1,36 @@
+[versions]
+kotlin = "2.1.0"
+ktor = "3.0.1"
+koin = "3.5.6"
+logback = "1.4.14"
+postgresql = "42.7.4"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+
+[libraries]
+ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm" }
+ktor-server-auth-jvm = { module = "io.ktor:ktor-server-auth-jvm" }
+ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm" }
+ktor-server-config-yaml-jvm = { module = "io.ktor:ktor-server-config-yaml-jvm" }
+ktor-server-resources-jvm = { module = "io.ktor:ktor-server-resources-jvm" }
+ktor-server-host-common-jvm = { module = "io.ktor:ktor-server-host-common-jvm" }
+ktor-server-status-pages-jvm = { module = "io.ktor:ktor-server-status-pages-jvm" }
+ktor-server-default-headers-jvm = { module = "io.ktor:ktor-server-default-headers-jvm" }
+ktor-server-request-validation = { module = "io.ktor:ktor-server-request-validation" }
+ktor-server-content-negotiation-jvm = { module = "io.ktor:ktor-server-content-negotiation-jvm" }
+ktor-serialization-kotlinx-json-jvm = { module = "io.ktor:ktor-serialization-kotlinx-json-jvm" }
+
+ktor-server-openapi = { module = "io.ktor:ktor-server-openapi" }
+ktor-server-swagger-jvm = { module = "io.ktor:ktor-server-swagger-jvm" }
+
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+
+ktor-server-test-host-jvm = { module = "io.ktor:ktor-server-test-host-jvm" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
