@@ -1,13 +1,14 @@
-# Digital Loan
+# Fast Pizza
 
 Цифровой сервис заказа пиццы.
 
 Использованные технологии:
 1. Kotlin.
-2. Ktor.
-3. PostgreSQL.
-4. Gradle.
-5. Docker.
+2. Exposed (ORM framework for Kotlin).
+3. Ktor.
+4. PostgreSQL.
+5. Gradle.
+6. Docker.
 
 ## Описание MVP
 
