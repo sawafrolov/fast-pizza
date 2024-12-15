@@ -1,5 +1,6 @@
 rootProject.name = "fast-pizza"
 
+include("fast-pizza-common")
 include("orders")
 
 dependencyResolutionManagement {
