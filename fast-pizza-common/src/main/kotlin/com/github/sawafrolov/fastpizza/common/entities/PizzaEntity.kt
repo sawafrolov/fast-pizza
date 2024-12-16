@@ -2,8 +2,8 @@ package com.github.sawafrolov.fastpizza.common.entities
 
 import com.github.sawafrolov.fastpizza.common.tables.PizzaTable
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.UUIDEntity
+import org.jetbrains.exposed.dao.UUIDEntityClass
 import java.util.UUID
 
 /**
@@ -14,7 +14,7 @@ class PizzaEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Специальный объект для Exposed ORM
      */
-    companion object: EntityClass<UUID, PizzaEntity>(PizzaTable)
+    companion object: UUIDEntityClass<PizzaEntity>(PizzaTable)
 
     /**
      * UUID
@@ -49,17 +49,17 @@ class PizzaEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Дата и время создания записи (служебное поле)
      */
-    var created_at by PizzaTable.created_at
+    var createdAt by PizzaTable.createdAt
 
     /**
      * Дата и время обновления записи (служебное поле)
      */
-    var updated_at by PizzaTable.updated_at
+    var updatedAt by PizzaTable.updatedAt
 
     /**
      * Дата и время удаления записи (служебное поле)
      */
-    var deleted_at by PizzaTable.deleted_at
+    var deletedAt by PizzaTable.deletedAt
 
     /**
      * Признак удаления записи (служебное поле)

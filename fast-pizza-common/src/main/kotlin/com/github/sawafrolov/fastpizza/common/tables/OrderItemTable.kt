@@ -10,8 +10,8 @@ import java.time.LocalDateTime
 object OrderItemTable: UUIDTable(name = "order_item", columnName = "uuid") {
 
     // Основные поля
-    val pizzaId = uuid("pizza_id").references(PizzaTable.id)
-    val orderId = uuid("order_id").references(OrderTable.id)
+    val pizzaId = reference("pizza_id", PizzaTable.id)
+    val orderId = reference("order_id", OrderTable.id)
     val quantity = integer("quantity")
 
     // Служебные поля
