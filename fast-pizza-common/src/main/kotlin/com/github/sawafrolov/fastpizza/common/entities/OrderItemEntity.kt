@@ -24,12 +24,12 @@ class OrderItemEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Заказ
      */
-    var order by OrderEntity referencedOn OrderItemTable.orderId
+    var order by OrderEntity referencedOn OrderItemTable.order
 
     /**
      * Пицца
      */
-    var pizza by PizzaEntity referencedOn OrderItemTable.pizzaId
+    var pizza by PizzaEntity referencedOn OrderItemTable.pizza
 
     /**
      * Количество

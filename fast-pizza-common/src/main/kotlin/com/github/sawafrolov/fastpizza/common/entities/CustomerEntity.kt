@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.entities
 
 import com.github.sawafrolov.fastpizza.common.tables.CustomerTable
+import com.github.sawafrolov.fastpizza.common.tables.OrderTable
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
@@ -55,6 +56,8 @@ class CustomerEntity(id: EntityID<UUID>): UUIDEntity(id) {
      * Список адресов
      */
     var addresses by CustomerTable.addresses
+
+    var orders by OrderEntity referrersOn OrderTable.customer
 
     /**
      * Дата и время создания записи (служебное поле)

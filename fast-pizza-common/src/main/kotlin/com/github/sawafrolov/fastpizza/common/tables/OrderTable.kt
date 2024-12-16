@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 object OrderTable: UUIDTable(name = "order", columnName = "uuid") {
 
     // Основные поля
-    val customerId = reference("customer_id", CustomerTable.id)
+    val customer = reference("customer_id", CustomerTable.id)
     val totalWeight = integer("total_weight")
     val totalPrice = decimal("total_price", precision = 9, scale = 2)
 

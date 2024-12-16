@@ -24,7 +24,7 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Пользователь
      */
-    var customer by CustomerEntity referencedOn OrderTable.customerId
+    var customer by CustomerEntity referencedOn OrderTable.customer
 
     /**
      * Суммарная масса заказа в граммах
