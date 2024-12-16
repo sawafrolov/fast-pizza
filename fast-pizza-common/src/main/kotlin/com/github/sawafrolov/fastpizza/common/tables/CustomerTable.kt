@@ -5,16 +5,18 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import java.time.LocalDateTime
 
 /**
- * Таблица для сущности пиццы
+ * Таблица для сущности пользователя
  */
-object PizzaTable: UUIDTable(name = "pizza", columnName = "uuid") {
+object CustomerTable: UUIDTable(name = "customer", columnName = "uuid") {
 
     // Основные поля
-    val name = varchar("name", 50)
-    val description = text("description").nullable()
-    val weight = integer("weight")
-    val price = decimal("price", precision = 9, scale = 2)
-    val ingredients = array<String>("ingredients")
+    val email = varchar("email", 50)
+    val password = text("password")
+    val phoneNumber = varchar("phone_number", 50)
+    val firstName = varchar("first_name", 50)
+    val lastName = varchar("last_name", 50).nullable()
+    val patronymic = varchar("patronymic", 50).nullable()
+    val addresses = array<String>("addresses")
 
     // Служебные поля
     val createdAt = datetime("created_at").default(LocalDateTime.now())
