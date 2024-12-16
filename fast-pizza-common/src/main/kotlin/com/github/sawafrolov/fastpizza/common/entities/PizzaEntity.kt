@@ -6,6 +6,9 @@ import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.UUIDEntity
 import java.util.UUID
 
+/**
+ * Сущность пиццы
+ */
 class PizzaEntity(id: EntityID<UUID>): UUIDEntity(id) {
 
     /**
