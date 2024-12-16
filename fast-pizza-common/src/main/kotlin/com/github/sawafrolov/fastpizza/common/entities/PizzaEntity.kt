@@ -4,7 +4,7 @@ import com.github.sawafrolov.fastpizza.common.tables.PizzaTable
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.UUIDEntity
-import java.util.*
+import java.util.UUID
 
 class PizzaEntity(id: EntityID<UUID>): UUIDEntity(id) {
 
