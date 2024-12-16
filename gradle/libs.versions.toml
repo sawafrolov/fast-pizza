@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 ktor = "3.0.2"
 exposed = "0.57.0"
 koin = "3.5.6"
