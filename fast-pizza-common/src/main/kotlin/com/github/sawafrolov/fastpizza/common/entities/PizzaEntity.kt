@@ -8,7 +8,9 @@ import java.util.UUID
 
 class PizzaEntity(id: EntityID<UUID>): UUIDEntity(id) {
 
-    // специальный объект для Exposed ORM
+    /**
+     * Специальный объект для Exposed ORM
+     */
     companion object: EntityClass<UUID, PizzaEntity>(PizzaTable)
 
     /**
