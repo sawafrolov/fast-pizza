@@ -24,7 +24,7 @@ dependencies {
     implementation(libs.ktor.server.default.headers.jvm)
     implementation(libs.ktor.server.request.validation)
     implementation(libs.ktor.server.content.negotiation.jvm)
-    implementation(libs.ktor.serialization.kotlinx.json.jvm)
+    implementation(libs.ktor.serialization.kotlinx.json)
 
     implementation(libs.ktor.server.openapi)
     implementation(libs.ktor.server.swagger.jvm)
