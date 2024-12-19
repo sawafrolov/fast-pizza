@@ -1,5 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.entities
 
+import com.github.sawafrolov.fastpizza.common.tables.OrderItemTable
 import com.github.sawafrolov.fastpizza.common.tables.OrderTable
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
@@ -25,6 +26,11 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
      * Пользователь
      */
     var customer by CustomerEntity referencedOn OrderTable.customer
+
+    /**
+     * Корзина (по связи One-To-Many)
+     */
+    val cast by OrderItemEntity referrersOn OrderItemTable.order
 
     /**
      * Суммарная масса заказа в граммах

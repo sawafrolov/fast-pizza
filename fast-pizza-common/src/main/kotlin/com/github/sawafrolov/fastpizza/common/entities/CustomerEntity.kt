@@ -57,7 +57,10 @@ class CustomerEntity(id: EntityID<UUID>): UUIDEntity(id) {
      */
     var addresses by CustomerTable.addresses
 
-    var orders by OrderEntity referrersOn OrderTable.customer
+    /**
+     * Список заказов (по связи One-To-Many)
+     */
+    val orders by OrderEntity referrersOn OrderTable.customer
 
     /**
      * Дата и время создания записи (служебное поле)

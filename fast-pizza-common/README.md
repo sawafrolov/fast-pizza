@@ -29,6 +29,7 @@
 |  lastName   |   String?    |         Фамилия          |
 | patronymic  |   String?    |         Отчество         |
 |  addresses  | List[String] |      Список адресов      |
+|   orders    | List[Order]  |      Список заказов      |
 
 Методы: регистрация, login и logout.
 
