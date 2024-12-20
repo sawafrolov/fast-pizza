@@ -1,6 +1,8 @@
 package com.github.sawafrolov.fastpizza.common
 
 import com.github.sawafrolov.fastpizza.common.dto.PizzaDto
+import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.ObjectUtil
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.json.Json
@@ -14,33 +16,16 @@ class DeserializationTest {
     @Test
     @DisplayName("Test correct pizza deserialization")
     fun testCorrectPizza() {
-        val data = """
-            {
-                "uuid": "8f5581c2-5311-450c-9043-a0f03f0a3142",
-                "name": "Test Pizza",
-                "description": "Test Pizza Description",
-                "weight": 345,
-                "price": "600.00",
-                "ingredients": ["Cheese", "Tomatoes"]
-            }
-        """.trimIndent()
+        val data = JsonUtil.readJson("correctPizza.json")
         val pizza = Json.decodeFromString<PizzaDto>(data)
-        assertEquals(2, pizza.ingredients.size)
+        assertEquals(ObjectUtil.correctPizzaDto, pizza)
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Test
+    @OptIn(ExperimentalSerializationApi::class)
     @DisplayName("Test incorrect pizza deserialization")
     fun testIncorrectPizza() {
-        val data = """
-            {
-                "uuid": "8f5581c2-5311-450c-9043-a0f03f0a3142",
-                "description": "Test Pizza Description",
-                "weight": 345,
-                "price": "600.00",
-                "ingredients": ["Cheese", "Tomatoes"]
-            }
-        """.trimIndent()
+        val data = JsonUtil.readJson("incorrectPizza.json")
         assertThrows(MissingFieldException::class.java) {
             Json.decodeFromString<PizzaDto>(data)
         }
