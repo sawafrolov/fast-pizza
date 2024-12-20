@@ -35,6 +35,8 @@ dependencies {
     implementation(libs.logback)
     implementation(libs.postgresql)
 
+    implementation(project(":fast-pizza-common"))
+
     testImplementation(libs.ktor.server.test.host.jvm)
     testImplementation(libs.kotlin.test.junit)
 }
