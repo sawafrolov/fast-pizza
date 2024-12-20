@@ -1,5 +1,6 @@
 package com.github.sawafrolov.fastpizza.common
 
+import com.github.sawafrolov.fastpizza.common.dto.CustomerDto
 import com.github.sawafrolov.fastpizza.common.dto.PizzaDto
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
 import com.github.sawafrolov.fastpizza.common.util.ObjectUtil
@@ -28,6 +29,24 @@ class DeserializationTest {
         val data = JsonUtil.readJson("incorrectPizza.json")
         assertThrows(MissingFieldException::class.java) {
             Json.decodeFromString<PizzaDto>(data)
+        }
+    }
+
+    @Test
+    @DisplayName("Test correct customer deserialization")
+    fun testCorrectCustomer() {
+        val data = JsonUtil.readJson("correctCustomer.json")
+        val pizza = Json.decodeFromString<CustomerDto>(data)
+        assertEquals(ObjectUtil.correctCustomerDto, pizza)
+    }
+
+    @Test
+    @OptIn(ExperimentalSerializationApi::class)
+    @DisplayName("Test incorrect customer deserialization")
+    fun testIncorrectCustomer() {
+        val data = JsonUtil.readJson("incorrectCustomer.json")
+        assertThrows(MissingFieldException::class.java) {
+            Json.decodeFromString<CustomerDto>(data)
         }
     }
 }

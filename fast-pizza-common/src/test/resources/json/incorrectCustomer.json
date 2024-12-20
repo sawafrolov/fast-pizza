@@ -1,0 +1,9 @@
+{
+  "uuid": "8f5581c2-5311-450c-9043-a0f03f0a3142",
+  "password": "password",
+  "phoneNumber": "+7 (123) 456-78-90",
+  "firstName": "Test",
+  "lastName": "Test",
+  "patronymic": "Patronymic",
+  "addresses": ["TestAddress1", "TestAddress2"]
+}
