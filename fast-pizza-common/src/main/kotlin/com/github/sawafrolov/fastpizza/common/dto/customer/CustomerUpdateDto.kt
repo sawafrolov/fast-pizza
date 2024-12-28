@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
-import java.util.*
+import java.util.UUID
 
 /**
  * DTO редактирования данных пользователя

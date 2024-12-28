@@ -27,7 +27,7 @@ data class OrderViewDto(
     /**
      * Корзина
      */
-    val cast: Map<PizzaViewDto, Int>,
+    val cast: List<PizzaViewDto>,
 
     /**
      * Адрес доставки

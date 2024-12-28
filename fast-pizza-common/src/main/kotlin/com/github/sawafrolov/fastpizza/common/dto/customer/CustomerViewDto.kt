@@ -2,9 +2,9 @@ package com.github.sawafrolov.fastpizza.common.dto.customer
 
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import kotlinx.serialization.Contextual
-import java.util.UUID
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
+import java.util.UUID
 
 /**
  * DTO отображения данных пользователя
