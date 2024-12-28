@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.orders
 
-//import com.github.sawafrolov.fastpizza.common.dto.PizzaDto
+//import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaDto
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*

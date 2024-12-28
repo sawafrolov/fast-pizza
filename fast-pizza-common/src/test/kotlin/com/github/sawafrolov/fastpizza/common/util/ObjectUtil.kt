@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.util
 
-import com.github.sawafrolov.fastpizza.common.dto.CustomerDto
-import com.github.sawafrolov.fastpizza.common.dto.PizzaDto
+import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaDto
 import java.math.BigDecimal
 import java.util.UUID
 
@@ -20,7 +20,7 @@ class ObjectUtil {
             ingredients = listOf("Cheese", "Tomatoes")
         )
 
-        val correctCustomerDto = CustomerDto(
+        val correctCustomerDto = CustomerViewDto(
             uuid = uuid,
             email = "test@test.com",
             password = "password",

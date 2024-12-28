@@ -1,14 +1,20 @@
 package com.github.sawafrolov.fastpizza.common.util
 
+import kotlinx.serialization.json.Json
 import java.io.File
 
 class JsonUtil {
 
     companion object {
 
-        fun readJson(filename: String): String {
+        val jsonDecoder = Json {
+            explicitNulls = false
+        }
+
+        inline fun <reified T: Any> readJson(filename: String, targetClass: Class<T>): T {
             val basePath = "src/test/resources/json"
-            return File("$basePath/$filename").readText(Charsets.UTF_8)
+            val json = File("$basePath/$filename").readText(Charsets.UTF_8)
+            return jsonDecoder.decodeFromString<T>(json)
         }
     }
 }

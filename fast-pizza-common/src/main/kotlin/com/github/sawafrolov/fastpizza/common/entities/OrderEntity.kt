@@ -25,7 +25,7 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Пользователь
      */
-    var customer by CustomerEntity referencedOn OrderTable.customer
+    var customer by OrderTable.customer
 
     /**
      * Корзина (по связи One-To-Many)
