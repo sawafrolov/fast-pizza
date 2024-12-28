@@ -1,24 +1,52 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.dto.OrderItemDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
-import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
-import jakarta.validation.constraints.NotEmpty
-import jakarta.validation.constraints.NotNull
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import org.jetbrains.annotations.Nullable
+import java.math.BigDecimal
 import java.util.UUID
 
+/**
+ * DTO для отображения данных заказа
+ */
 @Serializable
 data class OrderViewDto(
 
-    @Nullable
-    @Serializable(with = UuidSerializer::class)
-    val uuid: UUID?,
+    /**
+     * UUID
+     */
+    @Contextual
+    val uuid: UUID,
 
-    @field:NotNull
+    /**
+     * Пользователь
+     */
     val customer: CustomerViewDto,
 
-    @field:NotEmpty
-    val cast: List<OrderItemDto>
+    /**
+     * Корзина
+     */
+    val cast: Map<PizzaViewDto, Int>,
+
+    /**
+     * Адрес доставки
+     */
+    val address: String,
+
+    /**
+     * Суммарный вес в граммах
+     */
+    val totalWeight: Int,
+
+    /**
+     * Суммарная стоимость в рублях
+     */
+    @Contextual
+    val totalPrice: BigDecimal,
+
+    /**
+     * Статус выполнения заказа
+     */
+    val status: OrderStatus
 )

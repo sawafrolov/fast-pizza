@@ -11,7 +11,7 @@ class JsonUtil {
             explicitNulls = false
         }
 
-        inline fun <reified T: Any> readJson(filename: String, targetClass: Class<T>): T {
+        inline fun <reified T: Any> readJson(filename: String): T {
             val basePath = "src/test/resources/json"
             val json = File("$basePath/$filename").readText(Charsets.UTF_8)
             return jsonDecoder.decodeFromString<T>(json)

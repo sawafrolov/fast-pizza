@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.util
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
-import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
 import java.math.BigDecimal
 import java.util.UUID
 
@@ -11,7 +11,7 @@ class ObjectUtil {
 
         private val uuid = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142")
 
-        val correctPizzaDto = PizzaDto(
+        val correctPizzaDto = PizzaViewDto(
             uuid = uuid,
             name = "Test Pizza",
             description = "Test Pizza Description",
