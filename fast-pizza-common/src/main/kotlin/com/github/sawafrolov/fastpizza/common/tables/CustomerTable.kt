@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 object CustomerTable: UUIDTable(name = "customer", columnName = "uuid") {
 
     // Основные поля
-    val email = varchar("email", 50)
+    val email = varchar("email", 32).uniqueIndex()
     val password = text("password")
-    val phoneNumber = varchar("phone_number", 50)
+    val phoneNumber = varchar("phone_number", 10)
     val firstName = varchar("first_name", 50)
     val lastName = varchar("last_name", 50).nullable()
     val patronymic = varchar("patronymic", 50).nullable()

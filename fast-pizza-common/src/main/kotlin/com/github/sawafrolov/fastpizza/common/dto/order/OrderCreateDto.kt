@@ -28,7 +28,7 @@ data class OrderCreateDto(
      * Адрес доставки
      */
     @field:NotBlank
-    @field:Size(min = 10, max = 50)
+    @field:Size(min = 10, max = 100)
     val address: String,
 
     /**
