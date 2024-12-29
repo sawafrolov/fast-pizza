@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
-import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
+import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal
@@ -23,12 +23,12 @@ data class OrderViewDto(
      * Пользователь
      */
     @Contextual
-    val customerId: UUID,
+    val customer: CustomerShortDto,
 
     /**
      * Корзина
      */
-    val cast: List<PizzaViewDto>,
+    val cast: List<PizzaShortDto>,
 
     /**
      * Адрес доставки
