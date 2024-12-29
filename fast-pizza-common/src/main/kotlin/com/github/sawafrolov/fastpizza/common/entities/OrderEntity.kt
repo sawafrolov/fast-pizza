@@ -24,7 +24,7 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Пользователь
      */
-    var customer by OrderTable.customer
+    var customerId by OrderTable.customer
 
     /**
      * Корзина (список uuid пицц)

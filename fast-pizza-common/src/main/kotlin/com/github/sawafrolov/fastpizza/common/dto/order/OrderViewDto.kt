@@ -22,7 +22,8 @@ data class OrderViewDto(
     /**
      * Пользователь
      */
-    val customer: CustomerViewDto,
+    @Contextual
+    val customerId: UUID,
 
     /**
      * Корзина
