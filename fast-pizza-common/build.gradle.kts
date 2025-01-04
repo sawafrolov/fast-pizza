@@ -14,7 +14,10 @@ dependencies {
     implementation(libs.kotlin.exposed.dao)
     implementation(libs.kotlin.exposed.java.time)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.jakarta.validation)
+
+    implementation(libs.jakarta.validation.api)
+    implementation(libs.hibernate.validator.engine)
+    annotationProcessor(libs.hibernate.validator.annotation.processor)
 
     testImplementation(libs.ktor.server.test.host.jvm)
     testImplementation(libs.kotlin.test.junit)

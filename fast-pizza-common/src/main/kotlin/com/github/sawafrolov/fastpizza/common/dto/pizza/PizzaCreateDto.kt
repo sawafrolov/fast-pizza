@@ -1,10 +1,11 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
+import com.github.sawafrolov.fastpizza.common.util.BigDecimalSerializer
+import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Positive
 import jakarta.validation.constraints.Size
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
 import java.math.BigDecimal
@@ -18,6 +19,7 @@ data class PizzaCreateDto(
     /**
      * Название
      */
+    @field:Valid
     @field:NotBlank
     @field:Size(min = 3, max = 32)
     val name: String,
@@ -37,8 +39,8 @@ data class PizzaCreateDto(
     /**
      * Цена в рублях
      */
-    @Contextual
     @field:Positive
+    @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal,
 
     /**

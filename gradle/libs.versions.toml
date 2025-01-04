@@ -6,6 +6,7 @@ koin = "3.5.6"
 logback = "1.4.14"
 postgresql = "42.7.4"
 jakarta = "3.1.0"
+hibernate-validator = "9.0.0.CR1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -38,7 +39,10 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref =
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
-jakarta-validation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta" }
+
+jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta" }
+hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
+hibernate-validator-annotation-processor = { module = "org.hibernate.validator:hibernate-validator-annotation-processor", version.ref = "hibernate-validator" }
 
 ktor-server-test-host-jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }

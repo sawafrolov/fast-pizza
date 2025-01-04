@@ -2,6 +2,8 @@ package com.github.sawafrolov.fastpizza.common.util
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
+import java.math.BigDecimal
 import java.util.UUID
 
 object ObjectUtil {
@@ -26,5 +28,21 @@ object ObjectUtil {
         patronymic = null,
         addresses = null,
         orders = null
+    )
+
+    val correctPizzaCreateDto = PizzaCreateDto(
+        name = "Test Pizza",
+        description = null,
+        weight = 345,
+        price = BigDecimal("600.00"),
+        ingredients = listOf("Cheese", "Tomatoes")
+    )
+
+    val fullPizzaCreateDto = PizzaCreateDto(
+        name = "Test Pizza",
+        description = "Test Pizza Description",
+        weight = 345,
+        price = BigDecimal("600.00"),
+        ingredients = listOf("Cheese", "Tomatoes")
     )
 }
