@@ -3,10 +3,12 @@ package com.github.sawafrolov.fastpizza.common.dto.customer
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
+import kotlinx.serialization.Serializable
 
 /**
  * DTO для смены пароля
  */
+@Serializable
 data class CustomerChangePasswordDto(
 
     /**

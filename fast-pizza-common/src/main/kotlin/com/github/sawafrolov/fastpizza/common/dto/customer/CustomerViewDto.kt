@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
-import kotlinx.serialization.Contextual
+import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
 import java.util.UUID
@@ -15,7 +15,7 @@ data class CustomerViewDto(
     /**
      * UUID
      */
-    @Contextual
+    @Serializable(with = UuidSerializer::class)
     val uuid: UUID,
 
     /**

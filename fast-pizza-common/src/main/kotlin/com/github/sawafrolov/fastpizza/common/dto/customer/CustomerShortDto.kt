@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import kotlinx.serialization.Contextual
+import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
@@ -13,7 +13,7 @@ data class CustomerShortDto(
     /**
      * UUID
      */
-    @Contextual
+    @Serializable(with = UuidSerializer::class)
     val uuid: UUID,
 
     /**

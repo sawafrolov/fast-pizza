@@ -6,20 +6,20 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 /**
- * Тестирование сериализации CustomerShortDto
+ * Тестирование сериализации CustomerViewDto
  */
-class CustomerShortDtoSerializationTest {
+class CustomerViewDtoSerializationTest {
 
     val entityName = "customer"
 
-    val dtoType = "short"
+    val dtoType = "view"
 
     @Test
-    @DisplayName("Customer short DTO serialization test - correct")
-    fun testCorrectCustomerShortDtoSerialization() {
+    @DisplayName("Customer view DTO serialization test - correct")
+    fun testCorrectCustomerViewDtoSerialization() {
         val filename = "correct.json"
         val expectedJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actualJson = JsonUtil.toJson(ObjectUtil.correctCustomerShortDto)
+        val actualJson = JsonUtil.toJson(ObjectUtil.correctCustomerViewDto)
         JsonUtil.compareJsons(expectedJson, actualJson)
     }
 }
