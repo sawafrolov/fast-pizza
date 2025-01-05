@@ -22,4 +22,13 @@ class CustomerViewDtoSerializationTest {
         val actualJson = JsonUtil.toJson(ObjectUtil.correctCustomerViewDto)
         JsonUtil.compareJsons(expectedJson, actualJson)
     }
+
+    @Test
+    @DisplayName("Customer view DTO serialization test - full")
+    fun testFullCustomerViewDtoSerialization() {
+        val filename = "full.json"
+        val expectedJson = JsonUtil.readJson(entityName, dtoType, filename)
+        val actualJson = JsonUtil.toJson(ObjectUtil.fullCustomerViewDto)
+        JsonUtil.compareJsons(expectedJson, actualJson)
+    }
 }

@@ -22,6 +22,8 @@ object ObjectUtil {
 
     private val email = "test@test.com"
     private val phoneNumber = "1234567890"
+    private val patronymic = "Patronymic"
+    private val addresses = listOf("TestAddress1", "TestAddress2")
 
     private val test = "Test"
     private val testAddress1 = "TestAddress1"
@@ -133,5 +135,16 @@ object ObjectUtil {
         weight = pizzaWeight,
         price = pizzaPrice,
         ingredients = ingredients
+    )
+
+    val fullCustomerViewDto = CustomerViewDto(
+        uuid = uuid,
+        email = email,
+        phoneNumber = phoneNumber,
+        firstName = test,
+        lastName = test,
+        patronymic = patronymic,
+        addresses = addresses,
+        orders = listOf(correctOrderViewDto)
     )
 }
