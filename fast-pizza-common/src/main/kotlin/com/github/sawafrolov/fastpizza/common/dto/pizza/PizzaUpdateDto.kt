@@ -1,8 +1,9 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
+import com.github.sawafrolov.fastpizza.common.util.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Positive
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
 import java.math.BigDecimal
@@ -17,7 +18,7 @@ data class PizzaUpdateDto(
     /**
      * UUID
      */
-    @Contextual
+    @Serializable(with = UuidSerializer::class)
     val uuid: UUID,
 
     /**
@@ -35,8 +36,8 @@ data class PizzaUpdateDto(
     /**
      * Цена в рублях
      */
-    @Contextual
     @field:Positive
+    @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal,
 
     /**

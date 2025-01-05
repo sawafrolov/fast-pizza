@@ -13,51 +13,51 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Тестирование десериализации PizzaCreateDto
+ * Тестирование десериализации PizzaUpdateDto
  */
-class PizzaCreateDtoDeserializationTest {
+class PizzaUpdateDtoDeserializationTest {
 
     private val entityName = "pizza"
 
-    private val dtoType = "create"
+    private val dtoType = "update"
 
     @Test
-    @DisplayName("Pizza create DTO deserialization test - correct")
+    @DisplayName("Pizza update DTO deserialization test - correct")
     fun testCorrectPizzaCreateDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(ObjectUtil.correctPizzaCreateDto, actual)
+        assertEquals(ObjectUtil.correctPizzaUpdateDto, actual)
     }
 
     @Test
-    @DisplayName("Pizza create DTO deserialization test - full")
+    @DisplayName("Pizza update DTO deserialization test - full")
     fun testFullPizzaCreateDtoDeserialization() {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(ObjectUtil.fullPizzaCreateDto, actual)
+        assertEquals(ObjectUtil.fullPizzaUpdateDto, actual)
     }
 
     @Test
     @OptIn(ExperimentalSerializationApi::class)
-    @DisplayName("Pizza create DTO deserialization test - incorrect")
+    @DisplayName("Pizza update DTO deserialization test - incorrect")
     fun testIncorrectPizzaCreateDtoDeserialization() {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<PizzaCreateDto>(json)
+            JsonUtil.fromJson<PizzaUpdateDto>(json)
         }
     }
 
     @Test
-    @DisplayName("Pizza create DTO deserialization test - invalid")
+    @DisplayName("Pizza update DTO deserialization test - invalid")
     fun testInvalidPizzaCreateDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)
         assertFalse(ValidationUtil.isValid(actual))
     }
 }
