@@ -3,6 +3,7 @@ package com.github.sawafrolov.fastpizza.common.util
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
+import com.github.sawafrolov.fastpizza.common.dto.order.OrderCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
@@ -38,6 +39,18 @@ object ObjectUtil {
     val correctOrderChangeStatusDto = OrderChangeStatusDto(
         uuid = uuid,
         status = OrderStatus.FINISHED
+    )
+
+    val correctOrderCreateDto = OrderCreateDto(
+        customerId = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142"),
+        cast = listOf(
+            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142"),
+            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142"),
+            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03fe20842")
+        ),
+        address = "TestAddress1",
+        totalWeight = 1234,
+        totalPrice = BigDecimal("1499.00")
     )
 
     val correctPizzaCreateDto = PizzaCreateDto(
