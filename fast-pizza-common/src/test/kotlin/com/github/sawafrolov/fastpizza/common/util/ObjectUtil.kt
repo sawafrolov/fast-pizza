@@ -5,6 +5,7 @@ import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
+import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
@@ -15,10 +16,26 @@ import java.util.UUID
 object ObjectUtil {
 
     private val uuid = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142")
+    private val customerId = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142")
+    private val pizzaId = UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142")
+    private val smallPizzaId = UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03fe20842")
 
     private val email = "test@test.com"
-
     private val phoneNumber = "1234567890"
+
+    private val test = "Test"
+    private val testAddress1 = "TestAddress1"
+    private val testPizza = "Test Pizza"
+    private val testPizzaDescription = "Test Pizza Description"
+    private val smallPizza = "Small Pizza"
+
+    private val pizzaWeight = 345
+    private val pizzaPrice = BigDecimal("600.00")
+    private val ingredients = listOf("Cheese", "Tomatoes")
+
+    private val orderWeight = 1234
+    private val orderPrice = BigDecimal("1499.00")
+    private val orderStatus = OrderStatus.FINISHED
 
     val correctCustomerShortDto = CustomerShortDto(
         uuid = uuid,
@@ -29,7 +46,7 @@ object ObjectUtil {
         uuid = uuid,
         email = email,
         phoneNumber = phoneNumber,
-        firstName = "Test",
+        firstName = test,
         lastName = null,
         patronymic = null,
         addresses = null,
@@ -42,69 +59,79 @@ object ObjectUtil {
     )
 
     val correctOrderCreateDto = OrderCreateDto(
-        customerId = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142"),
+        customerId = customerId,
+        cast = listOf(pizzaId, pizzaId, smallPizzaId),
+        address = testAddress1,
+        totalWeight = orderWeight,
+        totalPrice = orderPrice
+    )
+
+    val correctOrderViewDto = OrderViewDto(
+        uuid = uuid,
+        customer = CustomerShortDto(customerId, email),
         cast = listOf(
-            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142"),
-            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142"),
-            UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03fe20842")
+            PizzaShortDto(pizzaId, testPizza),
+            PizzaShortDto(pizzaId, testPizza),
+            PizzaShortDto(smallPizzaId, smallPizza)
         ),
-        address = "TestAddress1",
-        totalWeight = 1234,
-        totalPrice = BigDecimal("1499.00")
+        address = testAddress1,
+        totalWeight = orderWeight,
+        totalPrice = orderPrice,
+        status = orderStatus
     )
 
     val correctPizzaCreateDto = PizzaCreateDto(
-        name = "Test Pizza",
+        name = testPizza,
         description = null,
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
+    )
+
+    val fullPizzaCreateDto = PizzaCreateDto(
+        name = testPizza,
+        description = testPizzaDescription,
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
     )
 
     val correctPizzaShortDto = PizzaShortDto(
         uuid = uuid,
-        name = "Test Pizza"
-    )
-
-    val fullPizzaCreateDto = PizzaCreateDto(
-        name = "Test Pizza",
-        description = "Test Pizza Description",
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        name = testPizza
     )
 
     val correctPizzaUpdateDto = PizzaUpdateDto(
         uuid = uuid,
         description = null,
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
     )
 
     val fullPizzaUpdateDto = PizzaUpdateDto(
         uuid = uuid,
-        description = "Test Pizza Description",
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        description = testPizzaDescription,
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
     )
 
     val correctPizzaViewDto = PizzaViewDto(
         uuid = uuid,
-        name = "Test Pizza",
+        name = testPizza,
         description = null,
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
     )
 
     val fullPizzaViewDto = PizzaViewDto(
         uuid = uuid,
-        name = "Test Pizza",
-        description = "Test Pizza Description",
-        weight = 345,
-        price = BigDecimal("600.00"),
-        ingredients = listOf("Cheese", "Tomatoes")
+        name = testPizza,
+        description = testPizzaDescription,
+        weight = pizzaWeight,
+        price = pizzaPrice,
+        ingredients = ingredients
     )
 }

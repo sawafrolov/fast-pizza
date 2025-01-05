@@ -1,5 +1,9 @@
 {
-  "customerId": "8f5581c2-5311-450c-9043-a0f03f0a3142",
+  "uuid": "8f5581c2-5311-450c-9043-a0f03f0a3142",
+  "customer": {
+    "uuid": "8f5581c2-5311-450c-9043-a0f03f0a3142",
+    "email": "test@test.com"
+  },
   "cast": [
     {
       "uuid": "8f5581c2-5311-4d0c-8a43-a0f03f0a3142",
