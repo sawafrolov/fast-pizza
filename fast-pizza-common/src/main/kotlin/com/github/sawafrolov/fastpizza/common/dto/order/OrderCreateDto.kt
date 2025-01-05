@@ -1,7 +1,8 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
+import com.github.sawafrolov.fastpizza.common.util.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
 import jakarta.validation.constraints.*
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.util.UUID
@@ -15,14 +16,14 @@ data class OrderCreateDto(
     /**
      * UUID пользователя
      */
-    @Contextual
+    @Serializable(with = UuidSerializer::class)
     val customerId: UUID,
 
     /**
      * Корзина
      */
     @field:NotEmpty
-    val cast: List<@Contextual UUID>,
+    val cast: List<@Serializable(with = UuidSerializer::class) UUID>,
 
     /**
      * Адрес доставки
@@ -40,7 +41,7 @@ data class OrderCreateDto(
     /**
      * Суммарная стоимость в рублях
      */
-    @Contextual
     @field:Positive
+    @Serializable(with = BigDecimalSerializer::class)
     val totalPrice: BigDecimal
 )

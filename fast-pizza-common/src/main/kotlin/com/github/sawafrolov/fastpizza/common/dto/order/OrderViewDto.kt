@@ -2,7 +2,8 @@ package com.github.sawafrolov.fastpizza.common.dto.order
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
-import kotlinx.serialization.Contextual
+import com.github.sawafrolov.fastpizza.common.util.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.util.UUID
@@ -16,13 +17,12 @@ data class OrderViewDto(
     /**
      * UUID
      */
-    @Contextual
+    @Serializable(with = UuidSerializer::class)
     val uuid: UUID,
 
     /**
      * Пользователь
      */
-    @Contextual
     val customer: CustomerShortDto,
 
     /**
@@ -43,7 +43,7 @@ data class OrderViewDto(
     /**
      * Суммарная стоимость в рублях
      */
-    @Contextual
+    @Serializable(with = BigDecimalSerializer::class)
     val totalPrice: BigDecimal,
 
     /**

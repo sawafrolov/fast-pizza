@@ -23,7 +23,7 @@ class PizzaUpdateDtoDeserializationTest {
 
     @Test
     @DisplayName("Pizza update DTO deserialization test - correct")
-    fun testCorrectPizzaCreateDtoDeserialization() {
+    fun testCorrectPizzaUpdateDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)
@@ -33,7 +33,7 @@ class PizzaUpdateDtoDeserializationTest {
 
     @Test
     @DisplayName("Pizza update DTO deserialization test - full")
-    fun testFullPizzaCreateDtoDeserialization() {
+    fun testFullPizzaUpdateDtoDeserialization() {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)
@@ -44,7 +44,7 @@ class PizzaUpdateDtoDeserializationTest {
     @Test
     @OptIn(ExperimentalSerializationApi::class)
     @DisplayName("Pizza update DTO deserialization test - incorrect")
-    fun testIncorrectPizzaCreateDtoDeserialization() {
+    fun testIncorrectPizzaUpdateDtoDeserialization() {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
@@ -54,7 +54,7 @@ class PizzaUpdateDtoDeserializationTest {
 
     @Test
     @DisplayName("Pizza update DTO deserialization test - invalid")
-    fun testInvalidPizzaCreateDtoDeserialization() {
+    fun testInvalidPizzaUpdateDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaUpdateDto>(actualJson)

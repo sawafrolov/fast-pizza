@@ -2,6 +2,8 @@ package com.github.sawafrolov.fastpizza.common.util
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
+import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
+import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
@@ -31,6 +33,11 @@ object ObjectUtil {
         patronymic = null,
         addresses = null,
         orders = null
+    )
+
+    val correctOrderChangeStatusDto = OrderChangeStatusDto(
+        uuid = uuid,
+        status = OrderStatus.FINISHED
     )
 
     val correctPizzaCreateDto = PizzaCreateDto(

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 /**
- * Тестирование сериализации PizzaShortDto
+ * Тестирование сериализации PizzaViewDto
  */
 class PizzaViewDtoSerializationTest {
 
