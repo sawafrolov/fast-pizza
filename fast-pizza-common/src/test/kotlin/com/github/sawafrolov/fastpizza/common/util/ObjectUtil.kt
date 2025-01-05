@@ -3,7 +3,9 @@ package com.github.sawafrolov.fastpizza.common.util
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
+import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
 import java.math.BigDecimal
 import java.util.UUID
 
@@ -39,6 +41,11 @@ object ObjectUtil {
         ingredients = listOf("Cheese", "Tomatoes")
     )
 
+    val correctPizzaShortDto = PizzaShortDto(
+        uuid = uuid,
+        name = "Test Pizza"
+    )
+
     val fullPizzaCreateDto = PizzaCreateDto(
         name = "Test Pizza",
         description = "Test Pizza Description",
@@ -57,6 +64,24 @@ object ObjectUtil {
 
     val fullPizzaUpdateDto = PizzaUpdateDto(
         uuid = uuid,
+        description = "Test Pizza Description",
+        weight = 345,
+        price = BigDecimal("600.00"),
+        ingredients = listOf("Cheese", "Tomatoes")
+    )
+
+    val correctPizzaViewDto = PizzaViewDto(
+        uuid = uuid,
+        name = "Test Pizza",
+        description = null,
+        weight = 345,
+        price = BigDecimal("600.00"),
+        ingredients = listOf("Cheese", "Tomatoes")
+    )
+
+    val fullPizzaViewDto = PizzaViewDto(
+        uuid = uuid,
+        name = "Test Pizza",
         description = "Test Pizza Description",
         weight = 345,
         price = BigDecimal("600.00"),
