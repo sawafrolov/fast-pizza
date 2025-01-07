@@ -1,7 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.util
 
-import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
-import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
+import com.github.sawafrolov.fastpizza.common.dto.customer.*
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
@@ -21,6 +20,8 @@ object ObjectUtil {
     private val smallPizzaId = UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03fe20842")
 
     private val email = "test@test.com"
+    private val password = "password"
+    private val newPassword = "newPassword"
     private val phoneNumber = "1234567890"
     private val patronymic = "Patronymic"
     private val addresses = listOf("TestAddress1", "TestAddress2")
@@ -39,9 +40,54 @@ object ObjectUtil {
     private val orderPrice = BigDecimal("1499.00")
     private val orderStatus = OrderStatus.FINISHED
 
+    val correctCustomerChangePasswordDto = CustomerChangePasswordDto(
+        email = email,
+        password = password,
+        newPassword = newPassword
+    )
+
+    val correctCustomerLoginDto = CustomerLoginDto(
+        email = email,
+        password = password
+    )
+
+    val correctCustomerRegistrationDto = CustomerRegistrationDto(
+        email = email,
+        password = password,
+        phoneNumber = phoneNumber,
+        firstName = test,
+        lastName = null,
+        patronymic = null
+    )
+
+    val fullCustomerRegistrationDto = CustomerRegistrationDto(
+        email = email,
+        password = password,
+        phoneNumber = phoneNumber,
+        firstName = test,
+        lastName = test,
+        patronymic = patronymic
+    )
+
     val correctCustomerShortDto = CustomerShortDto(
         uuid = uuid,
         email = email
+    )
+
+    val correctCustomerUpdateDto = CustomerUpdateDto(
+        uuid = uuid,
+        phoneNumber = phoneNumber,
+        firstName = test,
+        lastName = null,
+        patronymic = null
+    )
+
+    val fullCustomerUpdateDto = CustomerUpdateDto(
+        uuid = uuid,
+        phoneNumber = phoneNumber,
+        firstName = test,
+        lastName = test,
+        patronymic = patronymic
     )
 
     val correctCustomerViewDto = CustomerViewDto(

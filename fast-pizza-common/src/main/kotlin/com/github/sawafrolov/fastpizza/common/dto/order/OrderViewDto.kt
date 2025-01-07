@@ -2,8 +2,8 @@ package com.github.sawafrolov.fastpizza.common.dto.order
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
-import com.github.sawafrolov.fastpizza.common.util.BigDecimalSerializer
-import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
+import com.github.sawafrolov.fastpizza.common.serializers.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.util.UUID

@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.util.UuidSerializer
+import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
