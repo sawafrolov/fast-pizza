@@ -1,9 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import jakarta.validation.constraints.Digits
-import jakarta.validation.constraints.Email
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Size
+import jakarta.validation.constraints.*
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
 
@@ -25,6 +22,7 @@ data class CustomerRegistrationDto(
      */
     @field:NotBlank
     @field:Size(min = 8, max = 32)
+    @field:Pattern(regexp = "^\\S+$")
     val password: String,
 
     /**
