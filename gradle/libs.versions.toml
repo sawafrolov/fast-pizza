@@ -3,13 +3,15 @@ kotlin = "2.0.21"
 ktor = "3.0.2"
 exposed = "0.57.0"
 koin = "3.5.6"
-logback = "1.4.14"
+logback = "1.5.16"
 postgresql = "42.7.4"
+mapstruct = "1.6.3"
 jakarta = "3.1.0"
 hibernate-validator = "9.0.0.CR1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 
@@ -39,6 +41,9 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref =
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+
+mapstruct-core = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
 
 jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta" }
 hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }

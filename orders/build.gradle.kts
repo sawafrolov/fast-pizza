@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktor)
 }
@@ -32,10 +33,16 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
 
+    implementation(project(":fast-pizza-common"))
+
+    implementation(libs.mapstruct.core)
+    kapt(libs.mapstruct.processor)
+
     implementation(libs.logback)
     implementation(libs.postgresql)
-
-    implementation(project(":fast-pizza-common"))
+    implementation(libs.jakarta.validation.api)
+    implementation(libs.hibernate.validator.engine)
+    kapt(libs.hibernate.validator.annotation.processor)
 
     testImplementation(libs.ktor.server.test.host.jvm)
     testImplementation(libs.kotlin.test.junit)
