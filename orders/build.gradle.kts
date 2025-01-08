@@ -33,6 +33,10 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
 
+    implementation(libs.kotlin.exposed.core)
+    implementation(libs.kotlin.exposed.jdbc)
+    implementation(libs.kotlin.exposed.dao)
+
     implementation(project(":fast-pizza-common"))
 
     implementation(libs.logback)
