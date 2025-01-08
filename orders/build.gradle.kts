@@ -35,9 +35,6 @@ dependencies {
 
     implementation(project(":fast-pizza-common"))
 
-    implementation(libs.mapstruct.core)
-    kapt(libs.mapstruct.processor)
-
     implementation(libs.logback)
     implementation(libs.postgresql)
     implementation(libs.jakarta.validation.api)
