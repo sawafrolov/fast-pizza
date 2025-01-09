@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.orders
+package com.github.sawafrolov.fastpizza.orders.config
 
 import com.github.sawafrolov.fastpizza.orders.mappers.CustomerMapper
 import com.github.sawafrolov.fastpizza.orders.mappers.OrderMapper
