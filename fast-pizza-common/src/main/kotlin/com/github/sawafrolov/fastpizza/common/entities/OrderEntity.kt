@@ -29,12 +29,12 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Корзина (список uuid пицц)
      */
-    val cast by OrderTable.cast
+    var cast by OrderTable.cast
 
     /**
      * Адрес доставки
      */
-    val address by OrderTable.address
+    var address by OrderTable.address
 
     /**
      * Суммарная масса заказа в граммах

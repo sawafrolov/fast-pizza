@@ -1,6 +1,5 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
@@ -49,11 +48,5 @@ data class CustomerViewDto(
      * Список адресов
      */
     @Nullable
-    val addresses: List<String>?,
-
-    /**
-     * Список заказов
-     */
-    @Nullable
-    val orders: List<OrderViewDto>?
+    val addresses: List<String>?
 )
