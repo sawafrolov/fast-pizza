@@ -9,6 +9,7 @@ import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
+import com.github.sawafrolov.fastpizza.common.entities.PizzaEntity
 import java.math.BigDecimal
 import java.util.UUID
 
@@ -191,4 +192,12 @@ object ObjectUtil {
         patronymic = patronymic,
         addresses = addresses
     )
+
+    val pizzaEntity = PizzaEntity.new {
+        name = testPizza
+        description = testPizzaDescription
+        weight = pizzaWeight
+        price = pizzaPrice
+        ingredients = ingredients
+    }
 }
