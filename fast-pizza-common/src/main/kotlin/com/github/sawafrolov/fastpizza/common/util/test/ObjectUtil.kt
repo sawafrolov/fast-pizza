@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.common.util
+package com.github.sawafrolov.fastpizza.common.util.test
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.*
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
@@ -97,8 +97,7 @@ object ObjectUtil {
         firstName = test,
         lastName = null,
         patronymic = null,
-        addresses = null,
-        orders = null
+        addresses = null
     )
 
     val correctOrderChangeStatusDto = OrderChangeStatusDto(
@@ -190,7 +189,6 @@ object ObjectUtil {
         firstName = test,
         lastName = test,
         patronymic = patronymic,
-        addresses = addresses,
-        orders = listOf(correctOrderViewDto)
+        addresses = addresses
     )
 }

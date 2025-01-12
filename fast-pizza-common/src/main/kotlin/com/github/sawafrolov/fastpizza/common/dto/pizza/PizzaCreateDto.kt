@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
-import com.github.sawafrolov.fastpizza.common.serializers.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.util.serializers.BigDecimalSerializer
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotEmpty

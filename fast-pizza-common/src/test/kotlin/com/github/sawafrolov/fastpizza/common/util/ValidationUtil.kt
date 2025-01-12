@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.util
 
-import com.github.sawafrolov.fastpizza.common.validation.parameterMessageInterpolator
-import com.github.sawafrolov.fastpizza.common.validation.validator
+import com.github.sawafrolov.fastpizza.common.util.validation.parameterMessageInterpolator
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 
 class ValidationUtil {
 

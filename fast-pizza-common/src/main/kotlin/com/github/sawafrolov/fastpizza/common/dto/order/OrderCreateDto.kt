@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.serializers.BigDecimalSerializer
-import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
+import com.github.sawafrolov.fastpizza.common.util.serializers.BigDecimalSerializer
+import com.github.sawafrolov.fastpizza.common.util.serializers.UuidSerializer
 import jakarta.validation.constraints.*
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal

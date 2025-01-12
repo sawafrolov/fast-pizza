@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.common.validation
+package com.github.sawafrolov.fastpizza.common.util.validation
 
 import jakarta.validation.Validation
 import jakarta.validation.Validator

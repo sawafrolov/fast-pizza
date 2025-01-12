@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
+import com.github.sawafrolov.fastpizza.common.util.serializers.UuidSerializer
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.Nullable
 import java.util.UUID

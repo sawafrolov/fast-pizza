@@ -1,6 +1,6 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import com.github.sawafrolov.fastpizza.common.serializers.UuidSerializer
+import com.github.sawafrolov.fastpizza.common.util.serializers.UuidSerializer
 import jakarta.validation.constraints.Digits
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size

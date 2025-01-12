@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ObjectUtil
+import com.github.sawafrolov.fastpizza.common.util.test.ObjectUtil
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.common.serializers
+package com.github.sawafrolov.fastpizza.common.util.serializers
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
