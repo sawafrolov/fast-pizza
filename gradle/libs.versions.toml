@@ -7,6 +7,7 @@ logback = "1.5.16"
 postgresql = "42.7.4"
 jakarta = "3.1.0"
 hibernate-validator = "9.0.0.CR1"
+mockk = "1.13.16"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -46,5 +47,6 @@ jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api",
 hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
 hibernate-validator-annotation-processor = { module = "org.hibernate.validator:hibernate-validator-annotation-processor", version.ref = "hibernate-validator" }
 
-ktor-server-test-host-jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+ktor-server-test-host-jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }

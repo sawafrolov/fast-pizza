@@ -46,8 +46,9 @@ dependencies {
     implementation(libs.hibernate.validator.engine)
     kapt(libs.hibernate.validator.annotation.processor)
 
-    testImplementation(libs.ktor.server.test.host.jvm)
+    testImplementation(libs.mockk)
     testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.ktor.server.test.host.jvm)
 }
 
 tasks.withType<Test> {
