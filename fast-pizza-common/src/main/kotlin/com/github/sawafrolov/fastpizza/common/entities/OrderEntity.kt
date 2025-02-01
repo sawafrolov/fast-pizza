@@ -29,7 +29,7 @@ class OrderEntity(id: EntityID<UUID>): UUIDEntity(id) {
     /**
      * Корзина (список uuid пицц)
      */
-    var cast by OrderTable.cast
+    var cart by OrderTable.cart
 
     /**
      * Адрес доставки

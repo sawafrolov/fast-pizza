@@ -11,8 +11,8 @@ import java.util.UUID
 object OrderTable: UUIDTable(name = "order", columnName = "uuid") {
 
     // Основные поля
-    val customer = reference("customer_id", CustomerTable.id)
-    val cast = array<UUID>("cast")
+    val customer = uuid("customer")
+    val cart = array<UUID>("cart")
     val address = varchar("address", 100)
     val totalWeight = integer("total_weight")
     val totalPrice = decimal("total_price", precision = 9, scale = 2)

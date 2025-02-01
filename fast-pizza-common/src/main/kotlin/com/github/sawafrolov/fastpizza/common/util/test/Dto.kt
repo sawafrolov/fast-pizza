@@ -105,7 +105,7 @@ val correctOrderChangeStatusDto = OrderChangeStatusDto(
 
 val correctOrderCreateDto = OrderCreateDto(
     customerId = customerId,
-    cast = listOf(pizzaId, pizzaId, smallPizzaId),
+    cart = listOf(pizzaId, pizzaId, smallPizzaId),
     address = testAddress1,
     totalWeight = orderWeight,
     totalPrice = orderPrice
@@ -114,7 +114,7 @@ val correctOrderCreateDto = OrderCreateDto(
 val correctOrderViewDto = OrderViewDto(
     uuid = uuid,
     customer = CustomerShortDto(customerId, email),
-    cast = listOf(
+    cart = listOf(
         PizzaShortDto(pizzaId, testPizza),
         PizzaShortDto(pizzaId, testPizza),
         PizzaShortDto(smallPizzaId, smallPizza)

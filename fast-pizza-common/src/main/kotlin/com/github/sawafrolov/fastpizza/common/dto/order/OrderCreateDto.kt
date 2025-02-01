@@ -23,7 +23,7 @@ data class OrderCreateDto(
      * Корзина
      */
     @field:NotEmpty
-    val cast: List<@Serializable(with = UuidSerializer::class) UUID>,
+    val cart: List<@Serializable(with = UuidSerializer::class) UUID>,
 
     /**
      * Адрес доставки

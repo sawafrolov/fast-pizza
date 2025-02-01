@@ -14,7 +14,7 @@
 |  lastName   |   String?    |         Фамилия          |
 | patronymic  |   String?    |         Отчество         |
 |  addresses  | List[String] |      Список адресов      |
-|   orders    | List[Order]  |      Список заказов      |
+|   orders    |  List[UUID]  |   Список uuid заказов    |
 
 Методы: регистрация, login, logout, смена пароля, обновление данных.
 1. Регистрация.
@@ -47,7 +47,7 @@
 |:-----------:|:-----------:|:----------------------------:|
 |    uuid     |    UUID     |   Уникальный идентификатор   |
 |  customer   |    UUID     |    Ссылка на пользователя    |
-|    cast     | List[UUID]  |  Корзина (список uuid пицц)  |
+|    cart     | List[UUID]  |  Корзина (список uuid пицц)  |
 |   address   |   String    |        Адрес доставки        |
 | totalWeight |     Int     |  Суммарная масса в граммах   |
 | totalPrice  | BigDecimal  | Суммарная стоимость в рублях |
