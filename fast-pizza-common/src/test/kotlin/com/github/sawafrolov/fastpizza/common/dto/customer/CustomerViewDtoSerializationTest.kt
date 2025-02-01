@@ -1,7 +1,8 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.test.ObjectUtil
+import com.github.sawafrolov.fastpizza.common.util.test.correctCustomerViewDto
+import com.github.sawafrolov.fastpizza.common.util.test.fullCustomerViewDto
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -19,7 +20,7 @@ class CustomerViewDtoSerializationTest {
     fun testCorrectCustomerViewDtoSerialization() {
         val filename = "correct.json"
         val expectedJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actualJson = JsonUtil.toJson(ObjectUtil.correctCustomerViewDto)
+        val actualJson = JsonUtil.toJson(correctCustomerViewDto)
         JsonUtil.compareJsons(expectedJson, actualJson)
     }
 
@@ -28,7 +29,7 @@ class CustomerViewDtoSerializationTest {
     fun testFullCustomerViewDtoSerialization() {
         val filename = "full.json"
         val expectedJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actualJson = JsonUtil.toJson(ObjectUtil.fullCustomerViewDto)
+        val actualJson = JsonUtil.toJson(fullCustomerViewDto)
         JsonUtil.compareJsons(expectedJson, actualJson)
     }
 }

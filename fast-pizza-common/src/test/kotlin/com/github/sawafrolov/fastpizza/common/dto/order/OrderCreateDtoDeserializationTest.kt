@@ -1,8 +1,8 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.test.ObjectUtil
 import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
+import com.github.sawafrolov.fastpizza.common.util.test.correctOrderCreateDto
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -28,7 +28,7 @@ class OrderCreateDtoDeserializationTest {
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<OrderCreateDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(ObjectUtil.correctOrderCreateDto, actual)
+        assertEquals(correctOrderCreateDto, actual)
     }
 
     @Test

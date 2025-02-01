@@ -1,8 +1,9 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.test.ObjectUtil
 import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
+import com.github.sawafrolov.fastpizza.common.util.test.correctPizzaCreateDto
+import com.github.sawafrolov.fastpizza.common.util.test.fullPizzaCreateDto
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -28,7 +29,7 @@ class PizzaCreateDtoDeserializationTest {
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(ObjectUtil.correctPizzaCreateDto, actual)
+        assertEquals(correctPizzaCreateDto, actual)
     }
 
     @Test
@@ -38,7 +39,7 @@ class PizzaCreateDtoDeserializationTest {
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(ObjectUtil.fullPizzaCreateDto, actual)
+        assertEquals(fullPizzaCreateDto, actual)
     }
 
     @Test
