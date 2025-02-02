@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.customers
 
 import com.github.sawafrolov.fastpizza.customers.config.configureKoin
-import com.github.sawafrolov.fastpizza.customers.config.configureSerialization
+import com.github.sawafrolov.fastpizza.customers.config.configureRouting
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -10,5 +10,5 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
     configureKoin()
-    configureSerialization()
+    configureRouting()
 }
