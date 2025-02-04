@@ -8,22 +8,24 @@ import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 
-private val secret = "secret"
-private val algorithm = Algorithm.HMAC256(secret)
-private val audience = "http://localhost:8080/"
-private val issuer = "http://localhost:8080/"
 
-
-private val jwtVerifier: JWTVerifier = JWT
-    .require(algorithm)
-    .withAudience(audience)
-    .withIssuer(issuer)
-    .build()
 
 fun Application.configureAuth() {
+
+    val secret = environment.config.property("jwt.secret").getString()
+    val audience = environment.config.property("jwt.audience").getString()
+    val issuer = environment.config.property("jwt.issuer").getString()
+    val jwtRealm = environment.config.property("jwt.realm").getString()
+
+    val jwtVerifier: JWTVerifier = JWT
+        .require(Algorithm.HMAC256(secret))
+        .withAudience(audience)
+        .withIssuer(issuer)
+        .build()
+
     install(Authentication) {
         jwt("auth-jwt") {
-            realm = "fast-pizza"
+            realm = jwtRealm
             verifier(jwtVerifier)
 
             challenge { _, _ ->
