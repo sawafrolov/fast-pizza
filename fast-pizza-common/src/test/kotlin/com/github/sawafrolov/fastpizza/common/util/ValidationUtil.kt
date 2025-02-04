@@ -1,13 +1,18 @@
 package com.github.sawafrolov.fastpizza.common.util
 
-import com.github.sawafrolov.fastpizza.common.util.validation.parameterMessageInterpolator
-import com.github.sawafrolov.fastpizza.common.util.validation.validator
+import jakarta.validation.Validation
+import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 
 class ValidationUtil {
 
     companion object {
 
-        private val validator = validator(parameterMessageInterpolator())
+        private val validator = Validation
+            .byDefaultProvider()
+            .configure()
+            .messageInterpolator(ParameterMessageInterpolator())
+            .buildValidatorFactory()
+            .validator
 
         fun isValid(obj: Any) =
             validator.validate(obj).isEmpty()

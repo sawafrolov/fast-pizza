@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.customers.config
+package com.github.sawafrolov.fastpizza.starter
 
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.*
