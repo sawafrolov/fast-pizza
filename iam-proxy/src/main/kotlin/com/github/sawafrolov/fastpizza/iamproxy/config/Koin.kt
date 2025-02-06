@@ -1,9 +1,7 @@
-package com.github.sawafrolov.fastpizza.customers.config
+package com.github.sawafrolov.fastpizza.iamproxy.config
 
-import com.github.sawafrolov.fastpizza.customers.mappers.CustomerMapper
-import com.github.sawafrolov.fastpizza.customers.mappers.CustomerMapperImpl
-import com.github.sawafrolov.fastpizza.customers.services.CustomerService
-import com.github.sawafrolov.fastpizza.customers.services.FakeCustomerService
+import com.github.sawafrolov.fastpizza.iamproxy.services.FakeIamService
+import com.github.sawafrolov.fastpizza.iamproxy.services.IamService
 import com.github.sawafrolov.fastpizza.starter.parameterMessageInterpolator
 import com.github.sawafrolov.fastpizza.starter.validator
 import io.ktor.server.application.*
@@ -24,12 +22,8 @@ val beans = module {
         (parameterMessageInterpolator: ParameterMessageInterpolator) -> validator(parameterMessageInterpolator)
     }
 
-    singleOf(::CustomerMapperImpl) {
-        bind<CustomerMapper>()
-    }
-
-    singleOf(::FakeCustomerService) {
-        bind<CustomerService>()
+    singleOf(::FakeIamService) {
+        bind<IamService>()
     }
 }
 

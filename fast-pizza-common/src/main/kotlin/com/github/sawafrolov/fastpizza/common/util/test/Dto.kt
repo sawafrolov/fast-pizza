@@ -1,6 +1,9 @@
 package com.github.sawafrolov.fastpizza.common.util.test
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.*
+import com.github.sawafrolov.fastpizza.common.dto.iam.ChangePasswordDto
+import com.github.sawafrolov.fastpizza.common.dto.iam.LoginDto
+import com.github.sawafrolov.fastpizza.common.dto.iam.RegistrationDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
@@ -38,33 +41,29 @@ private val orderWeight = 1234
 private val orderPrice = BigDecimal("1499.00")
 private val orderStatus = OrderStatus.FINISHED
 
-val correctCustomerChangePasswordDto = CustomerChangePasswordDto(
+val correctChangePasswordDto = ChangePasswordDto(
     email = email,
     password = password,
     newPassword = newPassword
 )
 
-val correctCustomerLoginDto = CustomerLoginDto(
+val correctLoginDto = LoginDto(
     email = email,
     password = password
 )
 
-val correctCustomerRegistrationDto = CustomerRegistrationDto(
+val correctRegistrationDto = RegistrationDto(
     email = email,
     password = password,
-    phoneNumber = phoneNumber,
-    firstName = test,
-    lastName = null,
-    patronymic = null
+    phoneNumber = null,
+    firstName = null
 )
 
-val fullCustomerRegistrationDto = CustomerRegistrationDto(
+val fullRegistrationDto = RegistrationDto(
     email = email,
     password = password,
     phoneNumber = phoneNumber,
-    firstName = test,
-    lastName = test,
-    patronymic = patronymic
+    firstName = test
 )
 
 val correctCustomerShortDto = CustomerShortDto(

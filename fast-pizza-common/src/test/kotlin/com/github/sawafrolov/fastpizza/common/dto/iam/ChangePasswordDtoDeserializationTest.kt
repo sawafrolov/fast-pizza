@@ -1,8 +1,8 @@
-package com.github.sawafrolov.fastpizza.common.dto.customer
+package com.github.sawafrolov.fastpizza.common.dto.iam
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
 import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
-import com.github.sawafrolov.fastpizza.common.util.test.correctCustomerChangePasswordDto
+import com.github.sawafrolov.fastpizza.common.util.test.correctChangePasswordDto
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -15,9 +15,9 @@ import kotlin.test.assertTrue
 /**
  * Тестирование десериализации CustomerChangePasswordDto
  */
-class CustomerChangePasswordDtoDeserializationTest {
+class ChangePasswordDtoDeserializationTest {
 
-    private val entityName = "customer"
+    private val entityName = "iam"
 
     private val dtoType = "changePassword"
 
@@ -26,9 +26,9 @@ class CustomerChangePasswordDtoDeserializationTest {
     fun testCorrectCustomerChangePasswordDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerChangePasswordDto>(actualJson)
+        val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(correctCustomerChangePasswordDto, actual)
+        assertEquals(correctChangePasswordDto, actual)
     }
 
     @Test
@@ -38,7 +38,7 @@ class CustomerChangePasswordDtoDeserializationTest {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<CustomerChangePasswordDto>(json)
+            JsonUtil.fromJson<ChangePasswordDto>(json)
         }
     }
 
@@ -47,7 +47,7 @@ class CustomerChangePasswordDtoDeserializationTest {
     fun testInvalidCustomerChangePasswordDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerChangePasswordDto>(actualJson)
+        val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
         assertFalse(ValidationUtil.isValid(actual))
     }
 }

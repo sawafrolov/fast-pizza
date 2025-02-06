@@ -1,8 +1,8 @@
-package com.github.sawafrolov.fastpizza.common.dto.customer
+package com.github.sawafrolov.fastpizza.common.dto.iam
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
 import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
-import com.github.sawafrolov.fastpizza.common.util.test.correctCustomerLoginDto
+import com.github.sawafrolov.fastpizza.common.util.test.correctLoginDto
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -15,9 +15,9 @@ import kotlin.test.assertTrue
 /**
  * Тестирование десериализации CustomerLoginDto
  */
-class CustomerLoginDtoDeserializationTest {
+class LoginDtoDeserializationTest {
 
-    private val entityName = "customer"
+    private val entityName = "iam"
 
     private val dtoType = "login"
 
@@ -26,9 +26,9 @@ class CustomerLoginDtoDeserializationTest {
     fun testCorrectCustomerLoginDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerLoginDto>(actualJson)
+        val actual = JsonUtil.fromJson<LoginDto>(actualJson)
         assertTrue(ValidationUtil.isValid(actual))
-        assertEquals(correctCustomerLoginDto, actual)
+        assertEquals(correctLoginDto, actual)
     }
 
     @Test
@@ -38,7 +38,7 @@ class CustomerLoginDtoDeserializationTest {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<CustomerLoginDto>(json)
+            JsonUtil.fromJson<LoginDto>(json)
         }
     }
 
@@ -47,7 +47,7 @@ class CustomerLoginDtoDeserializationTest {
     fun testInvalidCustomerLoginDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerLoginDto>(actualJson)
+        val actual = JsonUtil.fromJson<LoginDto>(actualJson)
         assertFalse(ValidationUtil.isValid(actual))
     }
 }

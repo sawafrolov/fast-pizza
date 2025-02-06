@@ -6,14 +6,6 @@ import java.util.UUID
 
 interface CustomerService {
 
-    fun register(customerRegistrationDto: CustomerRegistrationDto): CustomerViewDto
-
-    fun login(customerLoginDto: CustomerLoginDto): CustomerViewDto
-
-    fun logout()
-
-    fun changePassword(customerChangePasswordDto: CustomerChangePasswordDto)
-
     fun findById(id: UUID): CustomerViewDto?
 
     fun findAllOrders(id: UUID): List<OrderViewDto>

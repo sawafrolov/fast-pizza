@@ -8,8 +8,6 @@ import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 
-
-
 fun Application.configureAuth() {
 
     val secret = environment.config.property("jwt.secret").getString()

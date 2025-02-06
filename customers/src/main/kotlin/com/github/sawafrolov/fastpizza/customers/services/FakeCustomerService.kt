@@ -10,16 +10,6 @@ import java.util.UUID
  */
 class FakeCustomerService: CustomerService {
 
-    override fun register(customerRegistrationDto: CustomerRegistrationDto): CustomerViewDto =
-        fullCustomerViewDto
-
-    override fun login(customerLoginDto: CustomerLoginDto): CustomerViewDto =
-        fullCustomerViewDto
-
-    override fun logout() {}
-
-    override fun changePassword(customerChangePasswordDto: CustomerChangePasswordDto) {}
-
     override fun findById(id: UUID): CustomerViewDto? =
         if (id == fullCustomerViewDto.uuid) fullCustomerViewDto else null
 

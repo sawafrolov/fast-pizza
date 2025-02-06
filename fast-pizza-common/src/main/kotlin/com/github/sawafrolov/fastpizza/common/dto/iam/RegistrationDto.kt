@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.common.dto.customer
+package com.github.sawafrolov.fastpizza.common.dto.iam
 
 import jakarta.validation.constraints.*
 import kotlinx.serialization.Serializable
@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable
  * DTO регистрации пользователя
  */
 @Serializable
-data class CustomerRegistrationDto(
+data class RegistrationDto(
 
     /**
      * Адрес электронной почты
@@ -28,27 +28,12 @@ data class CustomerRegistrationDto(
     /**
      * Номер телефона
      */
-    @field:NotBlank
-    @field:Size(min = 10, max = 10)
-    @field:Digits(integer = 10, fraction = 0)
-    val phoneNumber: String,
+    @Nullable
+    val phoneNumber: String?,
 
     /**
      * Имя
      */
-    @field:NotBlank
-    @field:Size(min = 2, max = 32)
-    val firstName: String,
-
-    /**
-     * Фамилия
-     */
     @Nullable
-    val lastName: String?,
-
-    /**
-     * Отчество
-     */
-    @Nullable
-    val patronymic: String?
+    val firstName: String?
 )
