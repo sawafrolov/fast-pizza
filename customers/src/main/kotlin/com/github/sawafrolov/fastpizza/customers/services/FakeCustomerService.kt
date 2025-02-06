@@ -1,8 +1,8 @@
 package com.github.sawafrolov.fastpizza.customers.services
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.*
-import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullCustomerViewDto
+import io.ktor.server.plugins.*
 import java.util.UUID
 
 /**
@@ -10,13 +10,12 @@ import java.util.UUID
  */
 class FakeCustomerService: CustomerService {
 
-    override fun findById(id: UUID): CustomerViewDto? =
-        if (id == fullCustomerViewDto.uuid) fullCustomerViewDto else null
+    override fun findById(id: UUID): CustomerViewDto =
+        if (id == fullCustomerViewDto.uuid) fullCustomerViewDto
+            else throw NotFoundException("Customer $id not found")
 
-    override fun findAllOrders(id: UUID): List<OrderViewDto> =
-        listOf()
-
-    override fun update(id: UUID, customerUpdateDto: CustomerUpdateDto) {}
+    override fun update(id: UUID, customerUpdateDto: CustomerUpdateDto): CustomerViewDto =
+        findById(id)
 
     override fun delete(id: UUID) {}
 }

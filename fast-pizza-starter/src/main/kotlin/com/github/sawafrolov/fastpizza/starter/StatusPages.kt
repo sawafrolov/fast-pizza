@@ -13,15 +13,15 @@ fun Application.configureStatusPages() {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
             when (cause) {
-                is UnauthorizedException -> call.respondText(
-                    cause.message ?: "Unauthorized",
-                    contentType = jsonContentType,
-                    HttpStatusCode.Unauthorized
-                )
                 is BadRequestException -> call.respondText(
                     cause.message ?: "Bad Request",
                     contentType = jsonContentType,
                     HttpStatusCode.BadRequest
+                )
+                is UnauthorizedException -> call.respondText(
+                    cause.message ?: "Unauthorized",
+                    contentType = jsonContentType,
+                    HttpStatusCode.Unauthorized
                 )
                 is NotFoundException -> call.respondText(
                     cause.message ?: "Not found",

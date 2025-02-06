@@ -8,6 +8,7 @@ import com.github.sawafrolov.fastpizza.common.dto.iam.RegistrationDto
 import com.github.sawafrolov.fastpizza.iamproxy.services.IamService
 import com.github.sawafrolov.fastpizza.starter.configureSerialization
 import com.github.sawafrolov.fastpizza.starter.configureStatusPages
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.*
 import io.ktor.server.request.*
@@ -50,21 +51,24 @@ fun Application.configureRouting() {
             }
             val userId = iamService.register(registrationDto)
             val token = createAuthToken(userId)
-            call.respond(mapOf("token" to token))
+            call.response.status(HttpStatusCode.Created)
+            call.respond(token)
         }
 
         post("/login") {
             val loginDto = call.receive<LoginDto>()
             val userId = iamService.login(loginDto)
             val token = createAuthToken(userId)
-            call.respond(mapOf("token" to token))
+            call.response.status(HttpStatusCode.OK)
+            call.respond(token)
         }
 
         put("/password") {
             val changePasswordDto = call.receive<ChangePasswordDto>()
             val userId = iamService.changePassword(changePasswordDto)
             val token = createAuthToken(userId)
-            call.respond(mapOf("token" to token))
+            call.response.status(HttpStatusCode.OK)
+            call.respond(token)
         }
     }
 }
