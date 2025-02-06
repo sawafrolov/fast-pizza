@@ -13,7 +13,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Тестирование десериализации CustomerChangePasswordDto
+ * Тестирование десериализации DTO смены пароля
  */
 class ChangePasswordDtoDeserializationTest {
 
@@ -22,8 +22,8 @@ class ChangePasswordDtoDeserializationTest {
     private val dtoType = "changePassword"
 
     @Test
-    @DisplayName("Customer change password DTO deserialization test - correct")
-    fun testCorrectCustomerChangePasswordDtoDeserialization() {
+    @DisplayName("Change password DTO deserialization test - correct")
+    fun testCorrectChangePasswordDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
@@ -33,8 +33,8 @@ class ChangePasswordDtoDeserializationTest {
 
     @Test
     @OptIn(ExperimentalSerializationApi::class)
-    @DisplayName("Customer change password DTO deserialization test - incorrect")
-    fun testIncorrectCustomerChangePasswordDtoDeserialization() {
+    @DisplayName("Change password DTO deserialization test - incorrect")
+    fun testIncorrectChangePasswordDtoDeserialization() {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
@@ -43,8 +43,8 @@ class ChangePasswordDtoDeserializationTest {
     }
 
     @Test
-    @DisplayName("Customer change password DTO deserialization test - invalid")
-    fun testInvalidCustomerChangePasswordDtoDeserialization() {
+    @DisplayName("Change password DTO deserialization test - invalid")
+    fun testInvalidChangePasswordDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)

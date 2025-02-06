@@ -14,7 +14,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Тестирование десериализации CustomerRegistrationDto
+ * Тестирование десериализации DTO регистрации
  */
 class RegistrationDtoDeserializationTest {
 
@@ -23,8 +23,8 @@ class RegistrationDtoDeserializationTest {
     private val dtoType = "registration"
 
     @Test
-    @DisplayName("Customer registration DTO deserialization test - correct")
-    fun testCorrectCustomerRegistrationDtoDeserialization() {
+    @DisplayName("Registration DTO deserialization test - correct")
+    fun testCorrectRegistrationDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
@@ -33,8 +33,8 @@ class RegistrationDtoDeserializationTest {
     }
 
     @Test
-    @DisplayName("Customer registration DTO deserialization test - full")
-    fun testFullCustomerRegistrationDtoDeserialization() {
+    @DisplayName("Registration DTO deserialization test - full")
+    fun testFullRegistrationDtoDeserialization() {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
@@ -44,8 +44,8 @@ class RegistrationDtoDeserializationTest {
 
     @Test
     @OptIn(ExperimentalSerializationApi::class)
-    @DisplayName("Customer registration DTO deserialization test - incorrect")
-    fun testIncorrectCustomerRegistrationDtoDeserialization() {
+    @DisplayName("Registration DTO deserialization test - incorrect")
+    fun testIncorrectRegistrationDtoDeserialization() {
         val filename = "incorrect.json"
         val json = JsonUtil.readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
@@ -54,8 +54,8 @@ class RegistrationDtoDeserializationTest {
     }
 
     @Test
-    @DisplayName("Customer registration DTO deserialization test - invalid")
-    fun testInvalidCustomerRegistrationDtoDeserialization() {
+    @DisplayName("Registration DTO deserialization test - invalid")
+    fun testInvalidRegistrationDtoDeserialization() {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)

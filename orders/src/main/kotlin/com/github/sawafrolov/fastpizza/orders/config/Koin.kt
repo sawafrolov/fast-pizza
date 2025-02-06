@@ -1,13 +1,11 @@
 package com.github.sawafrolov.fastpizza.orders.config
 
-import com.github.sawafrolov.fastpizza.common.util.validation.parameterMessageInterpolator
-import com.github.sawafrolov.fastpizza.common.util.validation.validator
-import com.github.sawafrolov.fastpizza.orders.mappers.CustomerMapper
 import com.github.sawafrolov.fastpizza.orders.mappers.OrderMapper
 import com.github.sawafrolov.fastpizza.orders.mappers.PizzaMapper
-import com.github.sawafrolov.fastpizza.orders.mappers.impl.CustomerMapperImpl
 import com.github.sawafrolov.fastpizza.orders.mappers.impl.OrderMapperImpl
 import com.github.sawafrolov.fastpizza.orders.mappers.impl.PizzaMapperImpl
+import com.github.sawafrolov.fastpizza.starter.parameterMessageInterpolator
+import com.github.sawafrolov.fastpizza.starter.validator
 import io.ktor.server.application.*
 import jakarta.validation.Validator
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
@@ -24,10 +22,6 @@ val beans = module {
 
     single<Validator> {
         (parameterMessageInterpolator: ParameterMessageInterpolator) -> validator(parameterMessageInterpolator)
-    }
-
-    singleOf(::CustomerMapperImpl) {
-        bind<CustomerMapper>()
     }
 
     singleOf(::OrderMapperImpl) {

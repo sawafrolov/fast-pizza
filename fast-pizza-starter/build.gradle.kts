@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ktor)
 }
 
 repositories {
@@ -21,8 +20,4 @@ dependencies {
     implementation(libs.postgresql)
     implementation(libs.jakarta.validation.api)
     implementation(libs.hibernate.validator.engine)
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

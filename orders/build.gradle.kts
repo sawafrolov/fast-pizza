@@ -36,6 +36,7 @@ dependencies {
     implementation(libs.kotlin.exposed.dao)
 
     implementation(project(":fast-pizza-common"))
+    implementation(project(":fast-pizza-starter"))
 
     implementation(libs.logback)
     implementation(libs.postgresql)
