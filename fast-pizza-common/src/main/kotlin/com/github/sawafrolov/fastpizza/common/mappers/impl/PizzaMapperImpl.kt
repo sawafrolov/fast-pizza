@@ -1,10 +1,10 @@
-package com.github.sawafrolov.fastpizza.orders.mappers.impl
+package com.github.sawafrolov.fastpizza.common.mappers.impl
 
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaShortDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaViewDto
 import com.github.sawafrolov.fastpizza.common.entities.PizzaEntity
-import com.github.sawafrolov.fastpizza.orders.mappers.PizzaMapper
+import com.github.sawafrolov.fastpizza.common.mappers.PizzaMapper
 
 class PizzaMapperImpl: PizzaMapper {
 

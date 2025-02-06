@@ -1,9 +1,11 @@
 package com.github.sawafrolov.fastpizza.orders.config
 
-import com.github.sawafrolov.fastpizza.orders.mappers.OrderMapper
-import com.github.sawafrolov.fastpizza.orders.mappers.PizzaMapper
-import com.github.sawafrolov.fastpizza.orders.mappers.impl.OrderMapperImpl
-import com.github.sawafrolov.fastpizza.orders.mappers.impl.PizzaMapperImpl
+import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
+import com.github.sawafrolov.fastpizza.common.mappers.OrderMapper
+import com.github.sawafrolov.fastpizza.common.mappers.PizzaMapper
+import com.github.sawafrolov.fastpizza.common.mappers.impl.CustomerMapperImpl
+import com.github.sawafrolov.fastpizza.common.mappers.impl.OrderMapperImpl
+import com.github.sawafrolov.fastpizza.common.mappers.impl.PizzaMapperImpl
 import com.github.sawafrolov.fastpizza.starter.parameterMessageInterpolator
 import com.github.sawafrolov.fastpizza.starter.validator
 import io.ktor.server.application.*
@@ -24,12 +26,16 @@ val beans = module {
         (parameterMessageInterpolator: ParameterMessageInterpolator) -> validator(parameterMessageInterpolator)
     }
 
-    singleOf(::OrderMapperImpl) {
-        bind<OrderMapper>()
+    singleOf(::CustomerMapperImpl) {
+        bind<CustomerMapper>()
     }
 
     singleOf(::PizzaMapperImpl) {
         bind<PizzaMapper>()
+    }
+
+    single<OrderMapper> {
+        (customerMapper: CustomerMapper, pizzaMapper: PizzaMapper) -> OrderMapperImpl(customerMapper, pizzaMapper)
     }
 }
 

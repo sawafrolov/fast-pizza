@@ -1,7 +1,7 @@
 package com.github.sawafrolov.fastpizza.customers.config
 
-import com.github.sawafrolov.fastpizza.customers.mappers.CustomerMapper
-import com.github.sawafrolov.fastpizza.customers.mappers.CustomerMapperImpl
+import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
+import com.github.sawafrolov.fastpizza.common.mappers.impl.CustomerMapperImpl
 import com.github.sawafrolov.fastpizza.customers.services.CustomerService
 import com.github.sawafrolov.fastpizza.customers.services.FakeCustomerService
 import com.github.sawafrolov.fastpizza.starter.parameterMessageInterpolator

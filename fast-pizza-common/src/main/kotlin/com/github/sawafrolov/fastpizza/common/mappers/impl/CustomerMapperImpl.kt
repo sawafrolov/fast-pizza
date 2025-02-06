@@ -1,8 +1,9 @@
-package com.github.sawafrolov.fastpizza.customers.mappers
+package com.github.sawafrolov.fastpizza.common.mappers.impl
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.entities.CustomerEntity
+import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
 
 class CustomerMapperImpl: CustomerMapper {
 

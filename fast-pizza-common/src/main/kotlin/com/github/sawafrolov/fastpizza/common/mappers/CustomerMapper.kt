@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.customers.mappers
+package com.github.sawafrolov.fastpizza.common.mappers
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto

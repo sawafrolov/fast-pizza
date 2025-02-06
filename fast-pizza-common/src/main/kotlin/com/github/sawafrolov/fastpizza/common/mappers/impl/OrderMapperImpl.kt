@@ -1,13 +1,13 @@
-package com.github.sawafrolov.fastpizza.orders.mappers.impl
+package com.github.sawafrolov.fastpizza.common.mappers.impl
 
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderStatus
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import com.github.sawafrolov.fastpizza.common.entities.CustomerEntity
 import com.github.sawafrolov.fastpizza.common.entities.OrderEntity
 import com.github.sawafrolov.fastpizza.common.entities.PizzaEntity
-import com.github.sawafrolov.fastpizza.orders.mappers.CustomerMapper
-import com.github.sawafrolov.fastpizza.orders.mappers.OrderMapper
-import com.github.sawafrolov.fastpizza.orders.mappers.PizzaMapper
+import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
+import com.github.sawafrolov.fastpizza.common.mappers.OrderMapper
+import com.github.sawafrolov.fastpizza.common.mappers.PizzaMapper
 
 class OrderMapperImpl(
     private val customerMapper: CustomerMapper,

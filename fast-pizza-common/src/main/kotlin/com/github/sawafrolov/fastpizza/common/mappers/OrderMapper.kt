@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.orders.mappers
+package com.github.sawafrolov.fastpizza.common.mappers
 
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderViewDto
 import com.github.sawafrolov.fastpizza.common.entities.CustomerEntity
