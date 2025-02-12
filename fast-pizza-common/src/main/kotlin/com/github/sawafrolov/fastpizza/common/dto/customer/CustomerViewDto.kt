@@ -48,5 +48,8 @@ data class CustomerViewDto(
      * Список адресов
      */
     @Nullable
-    val addresses: List<String>?
+    val addresses: List<String>?,
+
+    @Nullable
+    val pizzas: Map<String, Int>?
 )

@@ -18,7 +18,7 @@ object CustomerTable: UUIDTable(name = "customer", columnName = "uuid") {
     val lastName = varchar("last_name", 50).nullable()
     val patronymic = varchar("patronymic", 50).nullable()
     val addresses = array<String>("addresses")
-    val orders = array<UUID>("orders")
+    val pizzas = array<UUID>("pizzas")
 
     // Служебные поля
     val createdAt = datetime("created_at").default(LocalDateTime.now())

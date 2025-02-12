@@ -57,9 +57,9 @@ class CustomerEntity(id: EntityID<UUID>): UUIDEntity(id) {
     var addresses by CustomerTable.addresses
 
     /**
-     * Список uuid заказов
+     * Список uuid пицц, заказанных пользователем
      */
-    val orders by CustomerTable.orders
+    val pizzas by CustomerTable.pizzas
 
     /**
      * Дата и время создания записи (служебное поле)

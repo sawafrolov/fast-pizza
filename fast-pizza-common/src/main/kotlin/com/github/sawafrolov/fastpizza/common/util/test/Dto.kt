@@ -1,6 +1,8 @@
 package com.github.sawafrolov.fastpizza.common.util.test
 
-import com.github.sawafrolov.fastpizza.common.dto.customer.*
+import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
+import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerUpdateDto
+import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.dto.iam.ChangePasswordDto
 import com.github.sawafrolov.fastpizza.common.dto.iam.LoginDto
 import com.github.sawafrolov.fastpizza.common.dto.iam.RegistrationDto
@@ -20,24 +22,24 @@ private val customerId = UUID.fromString("8f5581c2-5311-450c-9043-a0f03f0a3142")
 private val pizzaId = UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03f0a3142")
 private val smallPizzaId = UUID.fromString("8f5581c2-5311-4d0c-8a43-a0f03fe20842")
 
-private val email = "test@test.com"
-private val password = "password"
-private val newPassword = "newPassword"
-private val phoneNumber = "1234567890"
-private val patronymic = "Patronymic"
+private const val email = "test@test.com"
+private const val password = "password"
+private const val newPassword = "newPassword"
+private const val phoneNumber = "1234567890"
+private const val patronymic = "Patronymic"
 private val addresses = listOf("TestAddress1", "TestAddress2")
 
-private val test = "Test"
-private val testAddress1 = "TestAddress1"
-private val testPizza = "Test Pizza"
-private val testPizzaDescription = "Test Pizza Description"
-private val smallPizza = "Small Pizza"
+private const val test = "Test"
+private const val testAddress1 = "TestAddress1"
+private const val testPizza = "Test Pizza"
+private const val testPizzaDescription = "Test Pizza Description"
+private const val smallPizza = "Small Pizza"
 
-private val pizzaWeight = 345
+private const val pizzaWeight = 345
 private val pizzaPrice = BigDecimal("600.00")
 private val ingredients = listOf("Cheese", "Tomatoes")
 
-private val orderWeight = 1234
+private const val orderWeight = 1234
 private val orderPrice = BigDecimal("1499.00")
 private val orderStatus = OrderStatus.FINISHED
 
@@ -94,7 +96,8 @@ val correctCustomerViewDto = CustomerViewDto(
     firstName = test,
     lastName = null,
     patronymic = null,
-    addresses = null
+    addresses = null,
+    pizzas = null
 )
 
 val correctOrderChangeStatusDto = OrderChangeStatusDto(
@@ -186,5 +189,9 @@ val fullCustomerViewDto = CustomerViewDto(
     firstName = test,
     lastName = test,
     patronymic = patronymic,
-    addresses = addresses
+    addresses = addresses,
+    pizzas = mapOf(
+        pizzaId.toString() to 2,
+        smallPizzaId.toString() to 1
+    )
 )

@@ -65,10 +65,9 @@ fun Application.configureRouting() {
 
         put("/password") {
             val changePasswordDto = call.receive<ChangePasswordDto>()
-            val userId = iamService.changePassword(changePasswordDto)
-            val token = createAuthToken(userId)
-            call.response.status(HttpStatusCode.OK)
-            call.respond(token)
+            iamService.changePassword(changePasswordDto)
+            call.response.status(HttpStatusCode.NoContent)
+            call.respondText("Password changed successfully")
         }
     }
 }

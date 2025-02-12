@@ -5,5 +5,9 @@
   "firstName": "Test",
   "lastName": "Test",
   "patronymic": "Patronymic",
-  "addresses": ["TestAddress1", "TestAddress2"]
+  "addresses": ["TestAddress1", "TestAddress2"],
+  "pizzas": {
+    "8f5581c2-5311-4d0c-8a43-a0f03f0a3142": 2,
+    "8f5581c2-5311-4d0c-8a43-a0f03fe20842": 1
+  }
 }

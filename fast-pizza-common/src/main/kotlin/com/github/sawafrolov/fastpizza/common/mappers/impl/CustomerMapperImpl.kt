@@ -4,6 +4,7 @@ import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerShortDto
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerViewDto
 import com.github.sawafrolov.fastpizza.common.entities.CustomerEntity
 import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
+import java.util.UUID
 
 class CustomerMapperImpl: CustomerMapper {
 
@@ -21,6 +22,15 @@ class CustomerMapperImpl: CustomerMapper {
             firstName = entity.firstName,
             lastName = entity.lastName,
             patronymic = entity.patronymic,
-            addresses = entity.addresses
+            addresses = entity.addresses,
+            pizzas = mapPizzas(entity.pizzas)
         )
+
+    private fun mapPizzas(pizzas: List<UUID>): Map<String, Int> {
+        val result = mutableMapOf<String, Int>()
+        pizzas.forEach {
+            result[it.toString()] = result.getOrDefault(it.toString(), 0) + 1
+        }
+        return result
+    }
 }

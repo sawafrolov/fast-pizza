@@ -11,5 +11,5 @@ interface IamService {
 
     fun login(loginDto: LoginDto): UUID
 
-    fun changePassword(changePasswordDto: ChangePasswordDto): UUID
+    fun changePassword(changePasswordDto: ChangePasswordDto)
 }

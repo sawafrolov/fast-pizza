@@ -14,6 +14,5 @@ class FakeIamService: IamService {
     override fun login(loginDto: LoginDto): UUID =
         correctCustomerShortDto.uuid
 
-    override fun changePassword(changePasswordDto: ChangePasswordDto): UUID =
-        correctCustomerShortDto.uuid
+    override fun changePassword(changePasswordDto: ChangePasswordDto) {}
 }
