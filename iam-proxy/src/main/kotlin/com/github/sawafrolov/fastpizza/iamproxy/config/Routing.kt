@@ -8,9 +8,9 @@ import com.github.sawafrolov.fastpizza.common.dto.iam.RegistrationDto
 import com.github.sawafrolov.fastpizza.iamproxy.services.IamService
 import com.github.sawafrolov.fastpizza.starter.configureSerialization
 import com.github.sawafrolov.fastpizza.starter.configureStatusPages
+import com.github.sawafrolov.fastpizza.starter.validateDto
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -45,10 +45,7 @@ fun Application.configureRouting() {
     routing {
         post("/register") {
             val registrationDto = call.receive<RegistrationDto>()
-            val violations = validator.validate(registrationDto)
-            if (violations.isNotEmpty()) {
-                throw BadRequestException("Registration invalid: $violations")
-            }
+            validator.validateDto(registrationDto, "Registration DTO invalid")
             val userId = iamService.register(registrationDto)
             val token = createAuthToken(userId)
             call.response.status(HttpStatusCode.Created)
@@ -57,6 +54,7 @@ fun Application.configureRouting() {
 
         post("/login") {
             val loginDto = call.receive<LoginDto>()
+            validator.validateDto(loginDto, "Login DTO invalid")
             val userId = iamService.login(loginDto)
             val token = createAuthToken(userId)
             call.response.status(HttpStatusCode.OK)
@@ -65,6 +63,7 @@ fun Application.configureRouting() {
 
         put("/password") {
             val changePasswordDto = call.receive<ChangePasswordDto>()
+            validator.validateDto(changePasswordDto, "Change password DTO invalid")
             iamService.changePassword(changePasswordDto)
             call.response.status(HttpStatusCode.NoContent)
             call.respondText("Password changed successfully")

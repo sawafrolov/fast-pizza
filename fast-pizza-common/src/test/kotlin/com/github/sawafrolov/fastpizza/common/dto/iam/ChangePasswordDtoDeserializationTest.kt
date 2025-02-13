@@ -1,8 +1,9 @@
 package com.github.sawafrolov.fastpizza.common.dto.iam
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
 import com.github.sawafrolov.fastpizza.common.util.test.correctChangePasswordDto
+import com.github.sawafrolov.fastpizza.common.util.validation.isValid
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -21,13 +22,15 @@ class ChangePasswordDtoDeserializationTest {
 
     private val dtoType = "changePassword"
 
+    private val validator= validator()
+
     @Test
     @DisplayName("Change password DTO deserialization test - correct")
     fun testCorrectChangePasswordDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(correctChangePasswordDto, actual)
     }
 
@@ -48,6 +51,6 @@ class ChangePasswordDtoDeserializationTest {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
-        assertFalse(ValidationUtil.isValid(actual))
+        assertFalse(validator.isValid(actual))
     }
 }

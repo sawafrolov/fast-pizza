@@ -1,16 +1,11 @@
 package com.github.sawafrolov.fastpizza.starter
 
-import jakarta.validation.Validation
+import io.ktor.server.plugins.*
 import jakarta.validation.Validator
-import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 
-fun parameterMessageInterpolator(): ParameterMessageInterpolator =
-    ParameterMessageInterpolator()
-
-fun validator(parameterMessageInterpolator: ParameterMessageInterpolator): Validator =
-    Validation
-        .byDefaultProvider()
-        .configure()
-        .messageInterpolator(parameterMessageInterpolator)
-        .buildValidatorFactory()
-        .validator
+fun Validator.validateDto(dto: Any, errorMessage: String) {
+    val violations = this.validate(dto)
+    if (violations.isNotEmpty()) {
+        throw BadRequestException("$errorMessage: $violations")
+    }
+}

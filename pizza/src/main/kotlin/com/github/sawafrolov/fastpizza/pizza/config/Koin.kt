@@ -1,10 +1,10 @@
-package com.github.sawafrolov.fastpizza.customers.config
+package com.github.sawafrolov.fastpizza.pizza.config
 
-import com.github.sawafrolov.fastpizza.common.mappers.CustomerMapper
-import com.github.sawafrolov.fastpizza.common.mappers.impl.CustomerMapperImpl
+import com.github.sawafrolov.fastpizza.common.mappers.PizzaMapper
+import com.github.sawafrolov.fastpizza.common.mappers.impl.PizzaMapperImpl
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
-import com.github.sawafrolov.fastpizza.customers.services.CustomerService
-import com.github.sawafrolov.fastpizza.customers.services.FakeCustomerService
+import com.github.sawafrolov.fastpizza.pizza.services.PizzaService
+import com.github.sawafrolov.fastpizza.pizza.services.FakePizzaService
 import io.ktor.server.application.*
 import jakarta.validation.Validator
 import org.koin.core.module.dsl.bind
@@ -18,12 +18,12 @@ val beans = module {
         validator()
     }
 
-    singleOf(::CustomerMapperImpl) {
-        bind<CustomerMapper>()
+    singleOf(::PizzaMapperImpl) {
+        bind<PizzaMapper>()
     }
 
-    singleOf(::FakeCustomerService) {
-        bind<CustomerService>()
+    singleOf(::FakePizzaService) {
+        bind<PizzaService>()
     }
 }
 

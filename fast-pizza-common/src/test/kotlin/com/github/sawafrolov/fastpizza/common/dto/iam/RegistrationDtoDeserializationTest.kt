@@ -1,9 +1,10 @@
 package com.github.sawafrolov.fastpizza.common.dto.iam
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
 import com.github.sawafrolov.fastpizza.common.util.test.correctRegistrationDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullRegistrationDto
+import com.github.sawafrolov.fastpizza.common.util.validation.isValid
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -22,13 +23,15 @@ class RegistrationDtoDeserializationTest {
 
     private val dtoType = "registration"
 
+    private val validator = validator()
+
     @Test
     @DisplayName("Registration DTO deserialization test - correct")
     fun testCorrectRegistrationDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(correctRegistrationDto, actual)
     }
 
@@ -38,7 +41,7 @@ class RegistrationDtoDeserializationTest {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(fullRegistrationDto, actual)
     }
 
@@ -59,6 +62,6 @@ class RegistrationDtoDeserializationTest {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
-        assertFalse(ValidationUtil.isValid(actual))
+        assertFalse(validator.isValid(actual))
     }
 }

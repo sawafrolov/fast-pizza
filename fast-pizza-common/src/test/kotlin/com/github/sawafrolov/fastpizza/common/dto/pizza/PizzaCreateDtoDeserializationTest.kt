@@ -1,9 +1,10 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
 import com.github.sawafrolov.fastpizza.common.util.test.correctPizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullPizzaCreateDto
+import com.github.sawafrolov.fastpizza.common.util.validation.isValid
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -22,13 +23,15 @@ class PizzaCreateDtoDeserializationTest {
 
     private val dtoType = "create"
 
+    private val validator = validator()
+
     @Test
     @DisplayName("Pizza create DTO deserialization test - correct")
     fun testCorrectPizzaCreateDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(correctPizzaCreateDto, actual)
     }
 
@@ -38,7 +41,7 @@ class PizzaCreateDtoDeserializationTest {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(fullPizzaCreateDto, actual)
     }
 
@@ -59,6 +62,6 @@ class PizzaCreateDtoDeserializationTest {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
-        assertFalse(ValidationUtil.isValid(actual))
+        assertFalse(validator.isValid(actual))
     }
 }

@@ -1,8 +1,9 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
 import com.github.sawafrolov.fastpizza.common.util.test.correctOrderChangeStatusDto
+import com.github.sawafrolov.fastpizza.common.util.validation.isValid
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
@@ -21,13 +22,15 @@ class OrderChangeStatusDtoDeserializationTest {
 
     private val dtoType = "changeStatus"
 
+    private val validator = validator()
+
     @Test
     @DisplayName("Order change status DTO deserialization test - correct")
     fun testCorrectOrderChangeStatusDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<OrderChangeStatusDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(correctOrderChangeStatusDto, actual)
     }
 

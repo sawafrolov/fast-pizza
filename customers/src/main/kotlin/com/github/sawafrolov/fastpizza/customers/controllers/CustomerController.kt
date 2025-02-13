@@ -3,16 +3,20 @@ package com.github.sawafrolov.fastpizza.customers.controllers
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerUpdateDto
 import com.github.sawafrolov.fastpizza.customers.services.CustomerService
 import com.github.sawafrolov.fastpizza.starter.util.getUserId
+import com.github.sawafrolov.fastpizza.starter.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
 import io.ktor.server.routing.*
+import jakarta.validation.Validator
 import org.koin.java.KoinJavaComponent.inject
+
+private val validator: Validator by inject(Validator::class.java)
 
 private val customerService: CustomerService by inject(CustomerService::class.java)
 
 fun Route.getCustomer() {
-    get {
-        val userId = getUserId(call)
+    get("/{id}") {
+        val userId = call.getUserId()
         val result = customerService.findById(userId)
         call.response.status(HttpStatusCode.OK)
         call.respond(result, typeInfo = null)
@@ -20,9 +24,10 @@ fun Route.getCustomer() {
 }
 
 fun Route.updateCustomer() {
-    put {
-        val userId = getUserId(call)
+    put("/{id}") {
+        val userId = call.getUserId()
         val customerUpdateDto = call.receive<CustomerUpdateDto>()
+        validator.validateDto(customerUpdateDto, "Customer update DTO invalid")
         val result = customerService.update(userId, customerUpdateDto)
         call.response.status(HttpStatusCode.OK)
         call.respond(result, typeInfo = null)
@@ -30,8 +35,8 @@ fun Route.updateCustomer() {
 }
 
 fun Route.deleteCustomer() {
-    delete {
-        val userId = getUserId(call)
+    delete("/{id}") {
+        val userId = call.getUserId()
         customerService.delete(userId)
         call.response.status(HttpStatusCode.NoContent)
     }

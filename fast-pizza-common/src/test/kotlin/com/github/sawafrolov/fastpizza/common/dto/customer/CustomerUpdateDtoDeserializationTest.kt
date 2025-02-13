@@ -1,9 +1,10 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
 import com.github.sawafrolov.fastpizza.common.util.JsonUtil
-import com.github.sawafrolov.fastpizza.common.util.ValidationUtil
 import com.github.sawafrolov.fastpizza.common.util.test.correctCustomerUpdateDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullCustomerUpdateDto
+import com.github.sawafrolov.fastpizza.common.util.validation.isValid
+import com.github.sawafrolov.fastpizza.common.util.validation.validator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import org.junit.jupiter.api.DisplayName
@@ -22,13 +23,15 @@ class CustomerUpdateDtoDeserializationTest {
 
     private val dtoType = "update"
 
+    private val validator = validator()
+
     @Test
     @DisplayName("Customer update DTO deserialization test - correct")
     fun testCorrectCustomerUpdateDtoDeserialization() {
         val filename = "correct.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(correctCustomerUpdateDto, actual)
     }
 
@@ -38,7 +41,7 @@ class CustomerUpdateDtoDeserializationTest {
         val filename = "full.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
-        assertTrue(ValidationUtil.isValid(actual))
+        assertTrue(validator.isValid(actual))
         assertEquals(fullCustomerUpdateDto, actual)
     }
 
@@ -59,6 +62,6 @@ class CustomerUpdateDtoDeserializationTest {
         val filename = "invalid.json"
         val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
         val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
-        assertFalse(ValidationUtil.isValid(actual))
+        assertFalse(validator.isValid(actual))
     }
 }
