@@ -8,7 +8,7 @@ import com.github.sawafrolov.fastpizza.common.dto.iam.RegistrationDto
 import com.github.sawafrolov.fastpizza.iamproxy.services.IamService
 import com.github.sawafrolov.fastpizza.starter.configureSerialization
 import com.github.sawafrolov.fastpizza.starter.configureStatusPages
-import com.github.sawafrolov.fastpizza.starter.validateDto
+import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*

@@ -4,7 +4,7 @@ import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
 import com.github.sawafrolov.fastpizza.pizza.services.PizzaService
 import com.github.sawafrolov.fastpizza.starter.util.getPathParamId
-import com.github.sawafrolov.fastpizza.starter.validateDto
+import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*

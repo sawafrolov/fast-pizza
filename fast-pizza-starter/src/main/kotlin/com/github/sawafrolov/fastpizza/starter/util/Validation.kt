@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.starter
+package com.github.sawafrolov.fastpizza.starter.util
 
 import io.ktor.server.plugins.*
 import jakarta.validation.Validator
