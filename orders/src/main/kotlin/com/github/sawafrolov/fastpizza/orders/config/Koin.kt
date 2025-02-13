@@ -7,6 +7,8 @@ import com.github.sawafrolov.fastpizza.common.mappers.impl.CustomerMapperImpl
 import com.github.sawafrolov.fastpizza.common.mappers.impl.OrderMapperImpl
 import com.github.sawafrolov.fastpizza.common.mappers.impl.PizzaMapperImpl
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
+import com.github.sawafrolov.fastpizza.orders.services.FakeOrderService
+import com.github.sawafrolov.fastpizza.orders.services.OrderService
 import io.ktor.server.application.*
 import jakarta.validation.Validator
 import org.koin.core.module.dsl.bind
@@ -30,6 +32,10 @@ val beans = module {
 
     single<OrderMapper> {
         (customerMapper: CustomerMapper, pizzaMapper: PizzaMapper) -> OrderMapperImpl(customerMapper, pizzaMapper)
+    }
+
+    singleOf(::FakeOrderService) {
+        bind<OrderService>()
     }
 }
 

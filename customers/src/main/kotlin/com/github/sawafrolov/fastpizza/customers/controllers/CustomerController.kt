@@ -2,9 +2,7 @@ package com.github.sawafrolov.fastpizza.customers.controllers
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerUpdateDto
 import com.github.sawafrolov.fastpizza.customers.services.CustomerService
-import com.github.sawafrolov.fastpizza.starter.util.checkPathParamId
-import com.github.sawafrolov.fastpizza.starter.util.getUserId
-import com.github.sawafrolov.fastpizza.starter.util.validateDto
+import com.github.sawafrolov.fastpizza.starter.util.*
 import io.ktor.http.*
 import io.ktor.server.request.*
 import io.ktor.server.routing.*
@@ -18,8 +16,8 @@ private val customerService: CustomerService by inject(CustomerService::class.ja
 fun Route.findCustomerById() {
     get("/{id}") {
         call.checkPathParamId()
-        val userId = call.getUserId()
-        val result = customerService.findById(userId)
+        val customerId = call.getPathParamId()
+        val result = customerService.findById(customerId)
         call.response.status(HttpStatusCode.OK)
         call.respond(result, typeInfo = null)
     }
@@ -28,10 +26,10 @@ fun Route.findCustomerById() {
 fun Route.updateCustomer() {
     put("/{id}") {
         call.checkPathParamId()
-        val userId = call.getUserId()
+        val customerId = call.getPathParamId()
         val customerUpdateDto = call.receive<CustomerUpdateDto>()
         validator.validateDto(customerUpdateDto, "Customer update DTO invalid")
-        val result = customerService.update(userId, customerUpdateDto)
+        val result = customerService.update(customerId, customerUpdateDto)
         call.response.status(HttpStatusCode.OK)
         call.respond(result, typeInfo = null)
     }
@@ -40,8 +38,8 @@ fun Route.updateCustomer() {
 fun Route.deleteCustomer() {
     delete("/{id}") {
         call.checkPathParamId()
-        val userId = call.getUserId()
-        customerService.delete(userId)
+        val customerId = call.getPathParamId()
+        customerService.delete(customerId)
         call.response.status(HttpStatusCode.NoContent)
     }
 }
