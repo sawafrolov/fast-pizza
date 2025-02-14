@@ -1,0 +1,188 @@
+openapi: "3.1.0"
+info:
+  title: "Fast-pizza customers API"
+  description: "Fast-pizza customers API"
+  version: "1.0.0"
+servers:
+- url: "http://localhost:8082"
+paths:
+  /customers:
+    get:
+      description: "Get customer by id"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CustomerViewDto"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+    put:
+      description: "Update customer by id"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerUpdateDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CustomerViewDto"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+    delete:
+      description: "Delete customer by id"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+components:
+  schemas:
+    CustomerViewDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        email:
+          type: "string"
+        phoneNumber:
+          type: "string"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        patronymic:
+          type: "string"
+        addresses:
+          type: "array"
+          items:
+            type: "string"
+        pizzas:
+          type: "string"
+      required:
+      - "uuid"
+      - "email"
+      - "phoneNumber"
+      - "firstName"
+    CustomerUpdateDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        phoneNumber:
+          type: "string"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        patronymic:
+          type: "string"
+      required:
+      - "uuid"
+      - "phoneNumber"
+      - "firstName"
