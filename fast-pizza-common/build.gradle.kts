@@ -21,7 +21,7 @@ dependencies {
     kapt(libs.hibernate.validator.annotation.processor)
 
     testImplementation(libs.ktor.server.test.host.jvm)
-    testImplementation(libs.kotlin.test.junit)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.withType<Test> {

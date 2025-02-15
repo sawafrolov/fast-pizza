@@ -45,5 +45,5 @@ hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-valid
 hibernate-validator-annotation-processor = { module = "org.hibernate.validator:hibernate-validator-annotation-processor", version.ref = "hibernate-validator" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 ktor-server-test-host-jvm = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
