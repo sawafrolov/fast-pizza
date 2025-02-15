@@ -9,7 +9,6 @@ import com.github.sawafrolov.fastpizza.starter.util.getUserId
 import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import jakarta.validation.Validator
 import org.koin.java.KoinJavaComponent.inject
@@ -63,6 +62,5 @@ fun Route.deleteOrder() {
         val orderId = call.getPathParamId()
         orderService.delete(orderId)
         call.response.status(HttpStatusCode.NoContent)
-        call.respondText("Order deleted successfully")
     }
 }
