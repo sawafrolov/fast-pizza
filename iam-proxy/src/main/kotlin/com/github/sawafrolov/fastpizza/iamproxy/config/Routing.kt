@@ -43,15 +43,6 @@ fun Application.configureRouting() {
     }
 
     routing {
-        post("/register") {
-            val registrationDto = call.receive<RegistrationDto>()
-            validator.validateDto(registrationDto, "Registration DTO invalid")
-            val userId = iamService.register(registrationDto)
-            val token = createAuthToken(userId)
-            call.response.status(HttpStatusCode.Created)
-            call.respond(token)
-        }
-
         post("/login") {
             val loginDto = call.receive<LoginDto>()
             validator.validateDto(loginDto, "Login DTO invalid")
@@ -61,12 +52,20 @@ fun Application.configureRouting() {
             call.respond(token)
         }
 
+        post("/register") {
+            val registrationDto = call.receive<RegistrationDto>()
+            validator.validateDto(registrationDto, "Registration DTO invalid")
+            val userId = iamService.register(registrationDto)
+            val token = createAuthToken(userId)
+            call.response.status(HttpStatusCode.Created)
+            call.respond(token)
+        }
+
         put("/password") {
             val changePasswordDto = call.receive<ChangePasswordDto>()
             validator.validateDto(changePasswordDto, "Change password DTO invalid")
             iamService.changePassword(changePasswordDto)
             call.response.status(HttpStatusCode.NoContent)
-            call.respondText("Password changed successfully")
         }
     }
 }

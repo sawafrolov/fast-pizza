@@ -1,12 +1,12 @@
 openapi: "3.1.0"
 info:
-  title: "Fast-pizza customers API"
-  description: "Fast-pizza customers API"
+  title: "Customers API"
+  description: "fast-pizza customers API"
   version: "1.0.0"
 servers:
 - url: "http://localhost:8082"
 paths:
-  /customers:
+  /customers/{id}:
     get:
       description: "Get customer by id"
       parameters:
