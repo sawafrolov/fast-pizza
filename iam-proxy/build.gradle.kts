@@ -1,8 +1,7 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktor)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 application {
@@ -14,7 +13,6 @@ repositories {
 }
 
 dependencies {
-
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.netty.jvm)
     implementation(libs.ktor.server.auth.jvm)
@@ -23,9 +21,6 @@ dependencies {
     implementation(libs.ktor.server.status.pages.jvm)
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.serialization.kotlinx.json)
-
-    implementation(libs.ktor.server.openapi)
-    implementation(libs.ktor.server.swagger.jvm)
 
     implementation(libs.koin.core)
     implementation(libs.koin.ktor)
@@ -42,7 +37,6 @@ dependencies {
     implementation(libs.postgresql)
     implementation(libs.jakarta.validation.api)
     implementation(libs.hibernate.validator.engine)
-    kapt(libs.hibernate.validator.annotation.processor)
 
     testImplementation(libs.mockk)
     testImplementation(libs.ktor.server.test.host.jvm)

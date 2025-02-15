@@ -8,7 +8,6 @@ repositories {
 }
 
 dependencies {
-
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.auth.jvm)
     implementation(libs.ktor.server.auth.jwt.jvm)
