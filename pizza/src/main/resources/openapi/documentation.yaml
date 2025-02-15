@@ -1,14 +1,14 @@
 openapi: "3.1.0"
 info:
-  title: "Orders API"
-  description: "fast-pizza orders API"
+  title: "Pizza API"
+  description: "fast-pizza pizza API"
   version: "1.0.0"
 servers:
-- url: "http://localhost:8084"
+- url: "http://localhost:8083"
 paths:
-  /orders:
+  /pizza:
     get:
-      description: "Find all orders"
+      description: "Find all pizzas"
       responses:
         "200":
           description: "OK"
@@ -17,14 +17,14 @@ paths:
               schema:
                 type: "array"
                 items:
-                  $ref: "#/components/schemas/OrderViewDto"
+                  $ref: "#/components/schemas/PizzaViewDto"
     post:
-      description: "Create order"
+      description: "Create pizza"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/OrderCreateDto"
+              $ref: "#/components/schemas/PizzaCreateDto"
         required: true
       responses:
         "200":
@@ -32,7 +32,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: "#/components/schemas/OrderViewDto"
+                $ref: "#/components/schemas/PizzaViewDto"
         "400":
           description: "Bad Request"
           content:
@@ -63,9 +63,9 @@ paths:
             application/json:
               schema:
                 type: "string"
-  /orders/{id}:
+  /pizza/{id}:
     get:
-      description: "Find order by id"
+      description: "Find pizza by id"
       parameters:
       - name: "id"
         in: "path"
@@ -78,21 +78,9 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: "#/components/schemas/OrderViewDto"
-    delete:
-      description: "Delete order by id"
-      parameters:
-        - name: "id"
-          in: "path"
-          required: true
-          schema:
-            type: "string"
-      responses:
-        "204":
-          description: "No Content"
-  /orders/{id}/status:
+                $ref: "#/components/schemas/PizzaViewDto"
     put:
-      description: "Update order status by id"
+      description: "Update pizza"
       parameters:
       - name: "id"
         in: "path"
@@ -103,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/OrderChangeStatusDto"
+              $ref: "#/components/schemas/PizzaUpdateDto"
         required: true
       responses:
         "200":
@@ -111,22 +99,55 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: "#/components/schemas/OrderViewDto"
+                $ref: "#/components/schemas/PizzaViewDto"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+    delete:
+      description: "Delete pizza by id"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
 
 components:
   schemas:
-    CustomerShortDto:
+    BigDecimal:
       type: "object"
-      properties:
-        uuid:
-          type: "string"
-          format: "uuid"
-        email:
-          type: "string"
-      required:
-      - "uuid"
-      - "email"
-    PizzaShortDto:
+      properties: {}
+    PizzaViewDto:
       type: "object"
       properties:
         uuid:
@@ -134,87 +155,63 @@ components:
           format: "uuid"
         name:
           type: "string"
-      required:
-      - "uuid"
-      - "name"
-    BigDecimal:
-      type: "object"
-      properties: {}
-    OrderViewDto:
-      type: "object"
-      properties:
-        uuid:
+        description:
           type: "string"
-          format: "uuid"
-        customer:
-          $ref: "#/components/schemas/CustomerShortDto"
-        cart:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/PizzaShortDto"
-        address:
-          type: "string"
-        totalWeight:
+        weight:
           type: "integer"
           format: "int32"
-        totalPrice:
+        price:
           $ref: "#/components/schemas/BigDecimal"
-        status:
-          type: "string"
-          enum:
-          - "ACCEPTED"
-          - "CANCELLED"
-          - "COOKING"
-          - "DELIVERING"
-          - "FINISHED"
-          - "FAILED"
-      required:
-      - "uuid"
-      - "customer"
-      - "cart"
-      - "address"
-      - "totalWeight"
-      - "totalPrice"
-      - "status"
-    OrderCreateDto:
-      type: "object"
-      properties:
-        customerId:
-          type: "string"
-          format: "uuid"
-        cart:
+        ingredients:
           type: "array"
           items:
             type: "string"
-            format: "uuid"
-        address:
+      required:
+      - "uuid"
+      - "name"
+      - "weight"
+      - "price"
+      - "ingredients"
+    PizzaCreateDto:
+      type: "object"
+      properties:
+        name:
           type: "string"
-        totalWeight:
+        description:
+          type: "string"
+        weight:
           type: "integer"
           format: "int32"
-        totalPrice:
+        price:
           $ref: "#/components/schemas/BigDecimal"
+        ingredients:
+          type: "array"
+          items:
+            type: "string"
       required:
-      - "customerId"
-      - "cart"
-      - "address"
-      - "totalWeight"
-      - "totalPrice"
-    OrderChangeStatusDto:
+      - "name"
+      - "weight"
+      - "price"
+      - "ingredients"
+    PizzaUpdateDto:
       type: "object"
       properties:
         uuid:
           type: "string"
           format: "uuid"
-        status:
+        description:
           type: "string"
-          enum:
-          - "ACCEPTED"
-          - "CANCELLED"
-          - "COOKING"
-          - "DELIVERING"
-          - "FINISHED"
-          - "FAILED"
+        weight:
+          type: "integer"
+          format: "int32"
+        price:
+          $ref: "#/components/schemas/BigDecimal"
+        ingredients:
+          type: "array"
+          items:
+            type: "string"
       required:
       - "uuid"
-      - "status"
+      - "weight"
+      - "price"
+      - "ingredients"

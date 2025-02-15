@@ -7,7 +7,6 @@ import com.github.sawafrolov.fastpizza.starter.util.getPathParamId
 import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import jakarta.validation.Validator
 import org.koin.java.KoinJavaComponent.inject
@@ -55,10 +54,9 @@ fun Route.updatePizza() {
 }
 
 fun Route.deletePizza() {
-    put("/{id}") {
+    delete("/{id}") {
         val id = call.getPathParamId()
         pizzaService.delete(id)
         call.response.status(HttpStatusCode.NoContent)
-        call.respondText("Pizza deleted successfully")
     }
 }
