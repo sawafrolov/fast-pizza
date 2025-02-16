@@ -3,6 +3,7 @@ kotlin = "2.1.10"
 ktor = "3.1.0"
 exposed = "0.59.0"
 koin = "4.0.2"
+auth0 = "4.5.0"
 logback = "1.5.16"
 postgresql = "42.7.4"
 jakarta = "3.1.0"
@@ -35,6 +36,7 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref =
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+auth0-java-jwt = { module = "com.auth0:java-jwt", version.ref = "auth0" }
 
 jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta" }
 hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }

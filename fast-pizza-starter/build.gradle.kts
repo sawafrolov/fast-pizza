@@ -15,6 +15,8 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.serialization.kotlinx.json)
 
+    implementation(project(":fast-pizza-common"))
+
     implementation(libs.postgresql)
     implementation(libs.jakarta.validation.api)
     implementation(libs.hibernate.validator.engine)

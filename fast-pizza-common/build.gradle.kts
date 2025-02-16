@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
 
     implementation(libs.logback)
+    implementation(libs.auth0.java.jwt)
     implementation(libs.jakarta.validation.api)
     implementation(libs.hibernate.validator.engine)
     kapt(libs.hibernate.validator.annotation.processor)
