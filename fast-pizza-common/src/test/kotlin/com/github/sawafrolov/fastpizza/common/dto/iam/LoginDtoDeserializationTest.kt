@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.iam
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctLoginDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
@@ -28,8 +29,8 @@ class LoginDtoDeserializationTest {
     @DisplayName("Login DTO deserialization test - correct")
     fun testCorrectLoginDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<LoginDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<LoginDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctLoginDto, actual)
     }
@@ -39,9 +40,9 @@ class LoginDtoDeserializationTest {
     @DisplayName("Login DTO deserialization test - incorrect")
     fun testIncorrectLoginDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<LoginDto>(json)
+            fromJson<LoginDto>(json)
         }
     }
 
@@ -49,8 +50,8 @@ class LoginDtoDeserializationTest {
     @DisplayName("Login DTO deserialization test - invalid")
     fun testInvalidLoginDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<LoginDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<LoginDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }

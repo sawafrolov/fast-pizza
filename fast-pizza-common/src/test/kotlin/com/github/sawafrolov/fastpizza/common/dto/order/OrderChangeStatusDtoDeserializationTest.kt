@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctOrderChangeStatusDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
@@ -28,8 +29,8 @@ class OrderChangeStatusDtoDeserializationTest {
     @DisplayName("Order change status DTO deserialization test - correct")
     fun testCorrectOrderChangeStatusDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<OrderChangeStatusDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<OrderChangeStatusDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctOrderChangeStatusDto, actual)
     }
@@ -39,9 +40,9 @@ class OrderChangeStatusDtoDeserializationTest {
     @DisplayName("Order change status DTO deserialization test - incorrect")
     fun testIncorrectOrderChangeStatusDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<OrderChangeStatusDto>(json)
+            fromJson<OrderChangeStatusDto>(json)
         }
     }
 
@@ -49,9 +50,9 @@ class OrderChangeStatusDtoDeserializationTest {
     @DisplayName("Order change status DTO deserialization test - invalid")
     fun testInvalidOrderChangeStatusDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
+        val actualJson = readJson(entityName, dtoType, filename)
         assertThrows<SerializationException> {
-            JsonUtil.fromJson<OrderChangeStatusDto>(actualJson)
+            fromJson<OrderChangeStatusDto>(actualJson)
         }
     }
 }

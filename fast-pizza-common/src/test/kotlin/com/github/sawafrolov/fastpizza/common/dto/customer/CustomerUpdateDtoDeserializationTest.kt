@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.customer
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctCustomerUpdateDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullCustomerUpdateDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
@@ -29,8 +30,8 @@ class CustomerUpdateDtoDeserializationTest {
     @DisplayName("Customer update DTO deserialization test - correct")
     fun testCorrectCustomerUpdateDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<CustomerUpdateDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctCustomerUpdateDto, actual)
     }
@@ -39,8 +40,8 @@ class CustomerUpdateDtoDeserializationTest {
     @DisplayName("Customer update DTO deserialization test - full")
     fun testFullCustomerUpdateDtoDeserialization() {
         val filename = "full.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<CustomerUpdateDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(fullCustomerUpdateDto, actual)
     }
@@ -50,9 +51,9 @@ class CustomerUpdateDtoDeserializationTest {
     @DisplayName("Customer update DTO deserialization test - incorrect")
     fun testIncorrectCustomerUpdateDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<CustomerUpdateDto>(json)
+            fromJson<CustomerUpdateDto>(json)
         }
     }
 
@@ -60,8 +61,8 @@ class CustomerUpdateDtoDeserializationTest {
     @DisplayName("Customer update DTO deserialization test - invalid")
     fun testInvalidCustomerUpdateDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<CustomerUpdateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<CustomerUpdateDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }

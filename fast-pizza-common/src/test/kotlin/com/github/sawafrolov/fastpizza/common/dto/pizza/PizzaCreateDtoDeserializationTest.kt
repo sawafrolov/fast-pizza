@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.pizza
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctPizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullPizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
@@ -29,8 +30,8 @@ class PizzaCreateDtoDeserializationTest {
     @DisplayName("Pizza create DTO deserialization test - correct")
     fun testCorrectPizzaCreateDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<PizzaCreateDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctPizzaCreateDto, actual)
     }
@@ -39,8 +40,8 @@ class PizzaCreateDtoDeserializationTest {
     @DisplayName("Pizza create DTO deserialization test - full")
     fun testFullPizzaCreateDtoDeserialization() {
         val filename = "full.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<PizzaCreateDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(fullPizzaCreateDto, actual)
     }
@@ -50,9 +51,9 @@ class PizzaCreateDtoDeserializationTest {
     @DisplayName("Pizza create DTO deserialization test - incorrect")
     fun testIncorrectPizzaCreateDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<PizzaCreateDto>(json)
+            fromJson<PizzaCreateDto>(json)
         }
     }
 
@@ -60,8 +61,8 @@ class PizzaCreateDtoDeserializationTest {
     @DisplayName("Pizza create DTO deserialization test - invalid")
     fun testInvalidPizzaCreateDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<PizzaCreateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<PizzaCreateDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }

@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.iam
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctChangePasswordDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
@@ -28,8 +29,8 @@ class ChangePasswordDtoDeserializationTest {
     @DisplayName("Change password DTO deserialization test - correct")
     fun testCorrectChangePasswordDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<ChangePasswordDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctChangePasswordDto, actual)
     }
@@ -39,9 +40,9 @@ class ChangePasswordDtoDeserializationTest {
     @DisplayName("Change password DTO deserialization test - incorrect")
     fun testIncorrectChangePasswordDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<ChangePasswordDto>(json)
+            fromJson<ChangePasswordDto>(json)
         }
     }
 
@@ -49,8 +50,8 @@ class ChangePasswordDtoDeserializationTest {
     @DisplayName("Change password DTO deserialization test - invalid")
     fun testInvalidChangePasswordDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<ChangePasswordDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<ChangePasswordDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }

@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.iam
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctRegistrationDto
 import com.github.sawafrolov.fastpizza.common.util.test.fullRegistrationDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
@@ -29,8 +30,8 @@ class RegistrationDtoDeserializationTest {
     @DisplayName("Registration DTO deserialization test - correct")
     fun testCorrectRegistrationDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<RegistrationDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctRegistrationDto, actual)
     }
@@ -39,8 +40,8 @@ class RegistrationDtoDeserializationTest {
     @DisplayName("Registration DTO deserialization test - full")
     fun testFullRegistrationDtoDeserialization() {
         val filename = "full.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<RegistrationDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(fullRegistrationDto, actual)
     }
@@ -50,9 +51,9 @@ class RegistrationDtoDeserializationTest {
     @DisplayName("Registration DTO deserialization test - incorrect")
     fun testIncorrectRegistrationDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<RegistrationDto>(json)
+            fromJson<RegistrationDto>(json)
         }
     }
 
@@ -60,8 +61,8 @@ class RegistrationDtoDeserializationTest {
     @DisplayName("Registration DTO deserialization test - invalid")
     fun testInvalidRegistrationDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<RegistrationDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<RegistrationDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }

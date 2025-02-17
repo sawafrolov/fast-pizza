@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.common.dto.order
 
-import com.github.sawafrolov.fastpizza.common.util.JsonUtil
+import com.github.sawafrolov.fastpizza.common.util.json.fromJson
+import com.github.sawafrolov.fastpizza.common.util.json.readJson
 import com.github.sawafrolov.fastpizza.common.util.test.correctOrderCreateDto
 import com.github.sawafrolov.fastpizza.common.util.validation.isValid
 import com.github.sawafrolov.fastpizza.common.util.validation.validator
@@ -28,8 +29,8 @@ class OrderCreateDtoDeserializationTest {
     @DisplayName("Order create DTO deserialization test - correct")
     fun testCorrectOrderCreateDtoDeserialization() {
         val filename = "correct.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<OrderCreateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<OrderCreateDto>(actualJson)
         assertTrue(validator.isValid(actual))
         assertEquals(correctOrderCreateDto, actual)
     }
@@ -39,9 +40,9 @@ class OrderCreateDtoDeserializationTest {
     @DisplayName("Order create DTO deserialization test - incorrect")
     fun testIncorrectOrderCreateDtoDeserialization() {
         val filename = "incorrect.json"
-        val json = JsonUtil.readJson(entityName, dtoType, filename)
+        val json = readJson(entityName, dtoType, filename)
         assertThrows<MissingFieldException> {
-            JsonUtil.fromJson<OrderCreateDto>(json)
+            fromJson<OrderCreateDto>(json)
         }
     }
 
@@ -49,8 +50,8 @@ class OrderCreateDtoDeserializationTest {
     @DisplayName("Order create DTO deserialization test - invalid")
     fun testInvalidOrderCreateDtoDeserialization() {
         val filename = "invalid.json"
-        val actualJson = JsonUtil.readJson(entityName, dtoType, filename)
-        val actual = JsonUtil.fromJson<OrderCreateDto>(actualJson)
+        val actualJson = readJson(entityName, dtoType, filename)
+        val actual = fromJson<OrderCreateDto>(actualJson)
         assertFalse(validator.isValid(actual))
     }
 }
