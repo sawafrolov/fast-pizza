@@ -50,7 +50,7 @@ fun Route.updatePizza() {
         val pizzaUpdateDto = call.receive<PizzaUpdateDto>()
         validator.validateDto(pizzaUpdateDto, "Pizza update DTO invalid")
         val result = pizzaService.update(id, pizzaUpdateDto)
-        call.response.status(HttpStatusCode.Created)
+        call.response.status(HttpStatusCode.OK)
         call.respondText(toJson(result))
     }
 }
