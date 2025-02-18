@@ -2,6 +2,7 @@ package com.github.sawafrolov.fastpizza.orders.controllers
 
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderChangeStatusDto
 import com.github.sawafrolov.fastpizza.common.dto.order.OrderCreateDto
+import com.github.sawafrolov.fastpizza.common.util.json.toJson
 import com.github.sawafrolov.fastpizza.orders.services.OrderService
 import com.github.sawafrolov.fastpizza.starter.exceptions.ForbiddenException
 import com.github.sawafrolov.fastpizza.starter.util.getPathParamId
@@ -9,6 +10,7 @@ import com.github.sawafrolov.fastpizza.starter.util.getUserId
 import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import jakarta.validation.Validator
 import org.koin.java.KoinJavaComponent.inject
@@ -26,7 +28,7 @@ fun Route.createOrder() {
         validator.validateDto(orderCreateDto, "Order create DTO invalid")
         val result = orderService.create(orderCreateDto)
         call.response.status(HttpStatusCode.Created)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -34,7 +36,7 @@ fun Route.findAllOrders() {
     get {
         val result = orderService.findAll()
         call.response.status(HttpStatusCode.OK)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -43,7 +45,7 @@ fun Route.findOrderById() {
         val orderId = call.getPathParamId()
         val result = orderService.findById(orderId)
         call.response.status(HttpStatusCode.OK)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -53,7 +55,7 @@ fun Route.updateOrderStatus() {
         val orderChangeStatusDto = call.receive<OrderChangeStatusDto>()
         val result = orderService.updateStatus(orderId, orderChangeStatusDto)
         call.response.status(HttpStatusCode.OK)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 

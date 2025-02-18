@@ -2,11 +2,13 @@ package com.github.sawafrolov.fastpizza.pizza.controller
 
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaCreateDto
 import com.github.sawafrolov.fastpizza.common.dto.pizza.PizzaUpdateDto
+import com.github.sawafrolov.fastpizza.common.util.json.toJson
 import com.github.sawafrolov.fastpizza.pizza.services.PizzaService
 import com.github.sawafrolov.fastpizza.starter.util.getPathParamId
 import com.github.sawafrolov.fastpizza.starter.util.validateDto
 import io.ktor.http.*
 import io.ktor.server.request.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import jakarta.validation.Validator
 import org.koin.java.KoinJavaComponent.inject
@@ -21,7 +23,7 @@ fun Route.createPizza() {
         validator.validateDto(pizzaCreateDto, "Pizza create DTO invalid")
         val result = pizzaService.create(pizzaCreateDto)
         call.response.status(HttpStatusCode.Created)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -29,7 +31,7 @@ fun Route.findAllPizzas() {
     get {
         val result = pizzaService.findAll()
         call.response.status(HttpStatusCode.OK)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -38,7 +40,7 @@ fun Route.findPizzaById() {
         val id = call.getPathParamId()
         val result = pizzaService.findById(id)
         call.response.status(HttpStatusCode.OK)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 
@@ -49,7 +51,7 @@ fun Route.updatePizza() {
         validator.validateDto(pizzaUpdateDto, "Pizza update DTO invalid")
         val result = pizzaService.update(id, pizzaUpdateDto)
         call.response.status(HttpStatusCode.Created)
-        call.respond(result, null)
+        call.respondText(toJson(result))
     }
 }
 

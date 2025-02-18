@@ -1,6 +1,7 @@
 package com.github.sawafrolov.fastpizza.customers.controllers
 
 import com.github.sawafrolov.fastpizza.common.dto.customer.CustomerUpdateDto
+import com.github.sawafrolov.fastpizza.common.util.json.toJson
 import com.github.sawafrolov.fastpizza.customers.services.CustomerService
 import com.github.sawafrolov.fastpizza.starter.util.*
 import io.ktor.http.*
@@ -19,7 +20,8 @@ fun Route.findCustomerById() {
         call.checkPathParamId()
         val customerId = call.getPathParamId()
         val result = customerService.findById(customerId)
-        call.respond(HttpStatusCode.OK, result)
+        call.response.status(HttpStatusCode.OK)
+        call.respondText(toJson(result))
     }
 }
 
@@ -30,7 +32,8 @@ fun Route.updateCustomer() {
         val customerUpdateDto = call.receive<CustomerUpdateDto>()
         validator.validateDto(customerUpdateDto, "Customer update DTO invalid")
         val result = customerService.update(customerId, customerUpdateDto)
-        call.respond(HttpStatusCode.OK, result)
+        call.response.status(HttpStatusCode.OK)
+        call.respondText(toJson(result))
     }
 }
 
