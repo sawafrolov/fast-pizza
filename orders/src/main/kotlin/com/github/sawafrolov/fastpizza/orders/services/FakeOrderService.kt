@@ -23,7 +23,7 @@ class FakeOrderService: OrderService {
     }
 
     override fun updateStatus(id: UUID, orderChangeStatusDto: OrderChangeStatusDto): OrderViewDto =
-        findById(id)
+        findById(id).copy(status = orderChangeStatusDto.status)
 
     override fun delete(id: UUID) {}
 }
