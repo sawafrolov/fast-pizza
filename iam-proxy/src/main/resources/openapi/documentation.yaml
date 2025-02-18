@@ -1,0 +1,182 @@
+openapi: "3.1.0"
+info:
+  title: "IAM API"
+  description: "fast-pizza IAM API"
+  version: "1.0.0"
+servers:
+- url: "http://localhost:8081"
+paths:
+  /login:
+    post:
+      description: "Sign in"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+  /register:
+    post:
+      description: "Sign up"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+  /password:
+    put:
+      description: "Change password"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordDto"
+        required: true
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+components:
+  schemas:
+    LoginDto:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+      required:
+      - "email"
+      - "password"
+    ChangePasswordDto:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+        newPassword:
+          type: "string"
+      required:
+      - "email"
+      - "password"
+      - "newPassword"
+    RegistrationDto:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+        phoneNumber:
+          type: "string"
+        firstName:
+          type: "string"
+      required:
+      - "email"
+      - "password"

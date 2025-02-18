@@ -1,0 +1,220 @@
+openapi: "3.1.0"
+info:
+  title: "Orders API"
+  description: "fast-pizza orders API"
+  version: "1.0.0"
+servers:
+- url: "http://localhost:8084"
+paths:
+  /orders:
+    get:
+      description: "Find all orders"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/OrderViewDto"
+    post:
+      description: "Create order"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderCreateDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderViewDto"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "string"
+  /orders/{id}:
+    get:
+      description: "Find order by id"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderViewDto"
+    delete:
+      description: "Delete order by id"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+  /orders/{id}/status:
+    put:
+      description: "Update order status by id"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderChangeStatusDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderViewDto"
+
+components:
+  schemas:
+    CustomerShortDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        email:
+          type: "string"
+      required:
+      - "uuid"
+      - "email"
+    PizzaShortDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        name:
+          type: "string"
+      required:
+      - "uuid"
+      - "name"
+    BigDecimal:
+      type: "object"
+      properties: {}
+    OrderViewDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        customer:
+          $ref: "#/components/schemas/CustomerShortDto"
+        cart:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PizzaShortDto"
+        address:
+          type: "string"
+        totalWeight:
+          type: "integer"
+          format: "int32"
+        totalPrice:
+          $ref: "#/components/schemas/BigDecimal"
+        status:
+          type: "string"
+          enum:
+          - "ACCEPTED"
+          - "CANCELLED"
+          - "COOKING"
+          - "DELIVERING"
+          - "FINISHED"
+          - "FAILED"
+      required:
+      - "uuid"
+      - "customer"
+      - "cart"
+      - "address"
+      - "totalWeight"
+      - "totalPrice"
+      - "status"
+    OrderCreateDto:
+      type: "object"
+      properties:
+        customerId:
+          type: "string"
+          format: "uuid"
+        cart:
+          type: "array"
+          items:
+            type: "string"
+            format: "uuid"
+        address:
+          type: "string"
+        totalWeight:
+          type: "integer"
+          format: "int32"
+        totalPrice:
+          $ref: "#/components/schemas/BigDecimal"
+      required:
+      - "customerId"
+      - "cart"
+      - "address"
+      - "totalWeight"
+      - "totalPrice"
+    OrderChangeStatusDto:
+      type: "object"
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        status:
+          type: "string"
+          enum:
+          - "ACCEPTED"
+          - "CANCELLED"
+          - "COOKING"
+          - "DELIVERING"
+          - "FINISHED"
+          - "FAILED"
+      required:
+      - "uuid"
+      - "status"
