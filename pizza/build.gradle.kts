@@ -15,8 +15,6 @@ repositories {
 dependencies {
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.netty.jvm)
-    implementation(libs.ktor.server.auth.jvm)
-    implementation(libs.ktor.server.auth.jwt.jvm)
     implementation(libs.ktor.server.status.pages.jvm)
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.serialization.kotlinx.json)
@@ -30,7 +28,6 @@ dependencies {
     implementation(libs.kotlin.exposed.dao)
 
     implementation(project(":fast-pizza-common"))
-    implementation(project(":fast-pizza-starter"))
 
     implementation(libs.logback)
     implementation(libs.postgresql)

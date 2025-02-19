@@ -10,8 +10,8 @@ val jsonSerializer = Json {
     explicitNulls = false
 }
 
-fun readJson(entityName: String, dtoType: String, filename: String): String =
-    File("$basePath/$entityName/$dtoType/$filename")
+fun readJson(dtoType: String, filename: String): String =
+    File("$basePath/$dtoType/$filename")
         .readText(Charsets.UTF_8)
 
 inline fun <reified T: Any> fromJson(json: String): T =

@@ -3,7 +3,6 @@ kotlin = "2.1.10"
 ktor = "3.1.0"
 exposed = "0.59.0"
 koin = "4.0.2"
-auth0 = "4.5.0"
 logback = "1.5.16"
 postgresql = "42.7.4"
 jakarta = "3.1.0"
@@ -24,8 +23,6 @@ kotlin-exposed-java-time = { module = "org.jetbrains.exposed:exposed-java-time",
 
 ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
-ktor-server-auth-jvm = { module = "io.ktor:ktor-server-auth-jvm", version.ref = "ktor" }
-ktor-server-auth-jwt-jvm = { module = "io.ktor:ktor-server-auth-jwt-jvm", version.ref = "ktor" }
 ktor-server-status-pages-jvm = { module = "io.ktor:ktor-server-status-pages-jvm", version.ref = "ktor" }
 ktor-server-content-negotiation-jvm = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -36,7 +33,6 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref =
 
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
-auth0-java-jwt = { module = "com.auth0:java-jwt", version.ref = "auth0" }
 
 jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta" }
 hibernate-validator-engine = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }

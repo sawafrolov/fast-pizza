@@ -18,35 +18,7 @@ services:
       POSTGRES_USER: pgadmin
       POSTGRES_PASSWORD: pgadmin
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:25.0.1
-    container_name: keycloak
-    depends_on:
-      postgres:
-        condition: service_healthy
-    ports:
-      - "8080:8080"
-    command: start-dev
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://0.0.0.0:8080/realms/master" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-    environment:
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
-      KC_DB_USERNAME: pgadmin
-      KC_DB_PASSWORD: pgadmin
-      KC_HOSTNAME: localhost
-      KC_HOSTNAME_PORT: 8080
-      KC_HOSTNAME_STRICT: false
-      KC_HOSTNAME_STRICT_HTTPS: false
-      KC_LOG_LEVEL: info
-      KC_METRICS_ENABLED: true
-      KC_HEALTH_ENABLED: true
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-
+  # Kafka
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
