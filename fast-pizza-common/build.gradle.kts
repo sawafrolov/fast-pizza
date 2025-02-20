@@ -42,7 +42,7 @@ openApiGenerate {
         mapOf(
             "dateLibrary" to "string",
             "enumPropertyNaming" to "UPPERCASE",
-            "serializationLibrary" to "json",
+            "serializationLibrary" to "jackson",
             "collectionType" to "list"
         )
     )
