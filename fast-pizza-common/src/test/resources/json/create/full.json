@@ -1,7 +1,0 @@
-{
-  "name": "Test Pizza",
-  "description": "Test Pizza Description",
-  "weight": 345,
-  "price": "600.00",
-  "ingredients": ["Cheese", "Tomatoes"]
-}
