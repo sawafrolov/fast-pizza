@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PizzaViewDto'
+                $ref: '#/components/schemas/PizzaCreateResponse'
 
   /pizza/read:
     post:
@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PizzaViewDto'
+                $ref: '#/components/schemas/PizzaReadResponse'
 
   /pizza/update:
     post:
@@ -65,7 +65,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PizzaViewDto'
+                $ref: '#/components/schemas/PizzaUpdateResponse'
 
   /pizza/delete:
     post:
@@ -84,7 +84,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PizzaViewDto'
+                $ref: '#/components/schemas/PizzaDeleteResponse'
 
   /pizza/search:
     post:
@@ -103,9 +103,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PizzaViewDto'
+                $ref: '#/components/schemas/PizzaSearchResponse'
 
 components:
   schemas:
@@ -120,6 +118,28 @@ components:
     Lock:
       type: string
       description: Версия оптимистичной блокировки
+
+    # Сведения об ошибке
+    Error:
+      type: object
+      description: Сведения об ошибке
+      properties:
+        code:
+          type: string
+          description: HTTP статус ошибки (400, 401, 404, etc.)
+          required: true
+          example: 400
+        message:
+          type: string
+          description: Сообщение об ошибке
+          required: true
+          example: Bad Request
+        group:
+          type: string
+          required: false
+        field:
+          type: string
+          required: false
 
     # DTO
     PizzaBaseDto:
@@ -168,8 +188,6 @@ components:
           properties:
             uuid:
               $ref: '#/components/schemas/PizzaId'
-        - type: object
-          properties:
             lock:
               $ref: '#/components/schemas/Lock'
         - $ref: '#/components/schemas/PizzaBaseDto'
@@ -180,8 +198,6 @@ components:
           properties:
             uuid:
               $ref: '#/components/schemas/PizzaId'
-        - type: object
-          properties:
             lock:
               $ref: '#/components/schemas/Lock'
 
@@ -191,6 +207,8 @@ components:
           properties:
             uuid:
               $ref: '#/components/schemas/PizzaId'
+            lock:
+              $ref: '#/components/schemas/Lock'
         - $ref: '#/components/schemas/PizzaBaseDto'
 
     PizzaSearchFilter:
@@ -288,3 +306,78 @@ components:
           properties:
             filter:
               $ref: '#/components/schemas/PizzaSearchFilter'
+
+    # Responses
+    ResponseResult:
+      type: string
+      description: Результат обработки запроса
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          required: true
+          example: create
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/PizzaCreateResponse'
+          read: '#/components/schemas/PizzaReadResponse'
+          update: '#/components/schemas/PizzaUpdateResponse'
+          delete: '#/components/schemas/PizzaDeleteResponse'
+          search: '#/components/schemas/PizzaSearchResponse'
+
+    PizzaSingleResponse:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaViewDto'
+
+    PizzaMultiResponse:
+      allOf:
+        - type: object
+          description: Ответ со списком объектов
+          properties:
+            pizzas:
+              type: array
+              items:
+                $ref: '#/components/schemas/PizzaViewDto'
+
+    PizzaCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaMultiResponse'
