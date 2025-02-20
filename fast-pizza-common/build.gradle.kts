@@ -24,35 +24,35 @@ dependencies {
     testRuntimeOnly(libs.junit.platform.launcher)
 }
 
-//openApiGenerate {
-//    val commonPackage = "com.github.sawafrolov.fastpizza.common"
-//    generatorName.set("kotlin")
-//    packageName.set(commonPackage)
-//    apiPackage.set("$commonPackage.api")
-//    modelPackage.set("$commonPackage.dto")
-//    invokerPackage.set("$commonPackage.invoker")
-//    inputSpec.set("${rootDir}\\openapi.yaml")
-//
-//    globalProperties.apply {
-//        put("models", "true")
-//        put("modelDocs", "false")
-//    }
-//
-//    configOptions.set(
-//        mapOf(
-//            "dateLibrary" to "string",
-//            "enumPropertyNaming" to "UPPERCASE",
-//            "serializationLibrary" to "jackson",
-//            "collectionType" to "list"
-//        )
-//    )
-//}
-//
-//tasks {
-//    compileKotlin {
-//        dependsOn(openApiGenerate)
-//    }
-//    test {
-//        useJUnitPlatform()
-//    }
-//}
+openApiGenerate {
+    val commonPackage = "com.github.sawafrolov.fastpizza.common"
+    generatorName.set("kotlin")
+    packageName.set(commonPackage)
+    apiPackage.set("$commonPackage.api")
+    modelPackage.set("$commonPackage.dto")
+    invokerPackage.set("$commonPackage.invoker")
+    inputSpec.set("${rootDir}\\openapi.yaml")
+
+    globalProperties.apply {
+        put("models", "true")
+        put("modelDocs", "false")
+    }
+
+    configOptions.set(
+        mapOf(
+            "dateLibrary" to "string",
+            "enumPropertyNaming" to "UPPERCASE",
+            "serializationLibrary" to "jackson",
+            "collectionType" to "list"
+        )
+    )
+}
+
+tasks {
+    compileKotlin {
+        dependsOn(openApiGenerate)
+    }
+    test {
+        useJUnitPlatform()
+    }
+}
