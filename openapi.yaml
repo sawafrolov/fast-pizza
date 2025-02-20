@@ -12,12 +12,14 @@ servers:
 paths:
   /pizza/create:
     post:
-      description: Создание пиццы
+      summary: Создание пиццы
+      description: Создание пиццы на основе DTO
+      operationId: createPizza
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PizzaCreateDto'
+              $ref: '#/components/schemas/PizzaCreateRequest'
         required: true
       responses:
         200:
@@ -29,7 +31,15 @@ paths:
 
   /pizza/read:
     post:
-      description: Получение пиццы по id
+      summary: Получение данных пиццы
+      description: Получение данных пиццы по uuid
+      operationId: readPizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaReadRequest'
+        required: true
       responses:
         200:
           description: OK
@@ -40,12 +50,14 @@ paths:
 
   /pizza/update:
     post:
-      description: Обновление данных пиццы
+      summary: Обновление данных пиццы
+      description: Обновление данных пиццы по uuid на основе DTO
+      operationId: updatePizza
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PizzaUpdateDto'
+              $ref: '#/components/schemas/PizzaUpdateRequest'
         required: true
       responses:
         200:
@@ -57,7 +69,15 @@ paths:
 
   /pizza/delete:
     post:
-      description: Удаление пиццы
+      summary: Удаление пиццы
+      description: Удаление пиццы по uuid
+      operationId: deletePizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaDeleteRequest'
+        required: true
       responses:
         200:
           description: OK
@@ -68,7 +88,15 @@ paths:
 
   /pizza/search:
     post:
+      summary: Поиск пицц
       description: Поиск пицц по заданным критериям
+      operationId: searchPizzas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaSearchRequest'
+        required: true
       responses:
         200:
           description: OK
