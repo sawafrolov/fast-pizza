@@ -1,25 +1,15 @@
 openapi: "3.1.0"
 info:
   title: "Pizza API"
-  description: "fast-pizza pizza API"
+  description: "CRUD API для сущности пиццы"
   version: "1.0.0"
 servers:
-- url: "http://localhost:8083"
+- url: "http://localhost:8080"
+
 paths:
-  /pizza:
-    get:
-      description: "Find all pizzas"
-      responses:
-        "200":
-          description: "OK"
-          content:
-            '*/*':
-              schema:
-                type: "array"
-                items:
-                  $ref: "#/components/schemas/PizzaViewDto"
+  /pizza/create:
     post:
-      description: "Create pizza"
+      description: "Создание пиццы"
       requestBody:
         content:
           application/json:
@@ -27,66 +17,40 @@ paths:
               $ref: "#/components/schemas/PizzaCreateDto"
         required: true
       responses:
-        "200":
+        200:
           description: "OK"
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: "#/components/schemas/PizzaViewDto"
-        "400":
-          description: "Bad Request"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "401":
-          description: "Unauthorized"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "403":
-          description: "Forbidden"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "404":
-          description: "Not Found"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "500":
-          description: "Internal Server Error"
-          content:
-            application/json:
-              schema:
-                type: "string"
-  /pizza/{id}:
-    get:
-      description: "Find pizza by id"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
+
+  /pizza/search:
+    post:
+      description: "Поиск пицц по заданным критериям"
       responses:
-        "200":
+        200:
           description: "OK"
           content:
-            '*/*':
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/PizzaViewDto"
+
+  /pizza/getById:
+    post:
+      description: "Получение пиццы по id"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
               schema:
                 $ref: "#/components/schemas/PizzaViewDto"
-    put:
-      description: "Update pizza"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
+
+  /pizza/update:
+    post:
+      description: "Обновление данных пиццы"
       requestBody:
         content:
           application/json:
@@ -94,59 +58,30 @@ paths:
               $ref: "#/components/schemas/PizzaUpdateDto"
         required: true
       responses:
-        "200":
+        200:
           description: "OK"
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: "#/components/schemas/PizzaViewDto"
-        "400":
-          description: "Bad Request"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "401":
-          description: "Unauthorized"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "403":
-          description: "Forbidden"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "404":
-          description: "Not Found"
-          content:
-            application/json:
-              schema:
-                type: "string"
-        "500":
-          description: "Internal Server Error"
-          content:
-            application/json:
-              schema:
-                type: "string"
-    delete:
-      description: "Delete pizza by id"
-      parameters:
-        - name: "id"
-          in: "path"
-          required: true
-          schema:
-            type: "string"
+
+  /pizza/delete:
+    post:
+      description: "Удаление пиццы"
       responses:
-        "204":
-          description: "No Content"
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PizzaViewDto"
 
 components:
   schemas:
     BigDecimal:
       type: "object"
       properties: {}
+
     PizzaViewDto:
       type: "object"
       properties:
@@ -172,6 +107,7 @@ components:
       - "weight"
       - "price"
       - "ingredients"
+
     PizzaCreateDto:
       type: "object"
       properties:
@@ -193,12 +129,15 @@ components:
       - "weight"
       - "price"
       - "ingredients"
+
     PizzaUpdateDto:
       type: "object"
       properties:
         uuid:
           type: "string"
           format: "uuid"
+        name:
+          type: "string"
         description:
           type: "string"
         weight:
@@ -212,6 +151,7 @@ components:
             type: "string"
       required:
       - "uuid"
+      - "name"
       - "weight"
       - "price"
       - "ingredients"
