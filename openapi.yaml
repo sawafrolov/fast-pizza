@@ -27,20 +27,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PizzaViewDto'
 
-  /pizza/search:
-    post:
-      description: Поиск пицц по заданным критериям
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PizzaViewDto'
-
-  /pizza/getById:
+  /pizza/read:
     post:
       description: Получение пиццы по id
       responses:
@@ -79,85 +66,197 @@ paths:
               schema:
                 $ref: '#/components/schemas/PizzaViewDto'
 
+  /pizza/search:
+    post:
+      description: Поиск пицц по заданным критериям
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PizzaViewDto'
+
 components:
   schemas:
-    PizzaId:
-      type: "string"
-      format: "uuid"
 
-    PizzaViewDto:
-      type: "object"
+    # UUID
+    PizzaId:
+      type: string
+      format: uuid
+      description: uuid пиццы
+
+    # Версия оптимистичной блокировки
+    Lock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    # DTO
+    PizzaBaseDto:
+      type: object
+      description: Общее для всех DTO пиццы
       properties:
-        uuid:
-          type: "string"
-          format: "uuid"
         name:
-          type: "string"
+          type: string
+          description: Название пиццы
+          required: true
         description:
-          type: "string"
+          type: string
+          description: Описание пиццы
+          required: false
         weight:
-          type: "integer"
-          format: "int32"
+          type: integer
+          format: int32
+          description: Масса пиццы в граммах
+          required: true
         price:
-          type: "number"
-          format: "double"
+          type: number
+          format: double
+          description: Цена пиццы в рублях
+          required: true
         ingredients:
-          type: "array"
+          type: array
           items:
-            type: "string"
-      required:
-      - "uuid"
-      - "name"
-      - "weight"
-      - "price"
-      - "ingredients"
+            type: string
+          description: Ингридиенты пиццы (кроме теста)
+          required: true
 
     PizzaCreateDto:
-      type: "object"
-      properties:
-        name:
-          type: "string"
-        description:
-          type: "string"
-        weight:
-          type: "integer"
-          format: "int32"
-        price:
-          type: "number"
-          format: "double"
-        ingredients:
-          type: "array"
-          items:
-            type: "string"
-      required:
-      - "name"
-      - "weight"
-      - "price"
-      - "ingredients"
+      allOf:
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaReadDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
 
     PizzaUpdateDto:
-      type: "object"
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+        - type: object
+          properties:
+            lock:
+              $ref: '#/components/schemas/Lock'
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaDeleteDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+        - type: object
+          properties:
+            lock:
+              $ref: '#/components/schemas/Lock'
+
+    PizzaViewDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaSearchFilter:
+      type: object
+      description: Критерии фильтрации для поиска пицц
       properties:
-        uuid:
-          type: "string"
-          format: "uuid"
-        name:
-          type: "string"
-        description:
-          type: "string"
-        weight:
-          type: "integer"
-          format: "int32"
-        price:
-          type: "number"
-          format: "double"
-        ingredients:
-          type: "array"
+        nameContains:
+          type: string
+          description: Название пиццы должно содержать
+          required: false
+        descriptionContains:
+          type: string
+          description: Описание пиццы должно содержать
+          required: false
+        weightFrom:
+          type: integer
+          description: Масса пиццы не менее
+          required: false
+        weightTo:
+          type: integer
+          description: Масса пиццы не более
+          required: false
+        priceFrom:
+          type: number
+          format: double
+          description: Цена пиццы не менее
+          required: false
+        priceTo:
+          type: number
+          format: double
+          description: Цена пиццы не более
+          required: false
+        pizzaContains:
+          type: array
           items:
-            type: "string"
-      required:
-      - "uuid"
-      - "name"
-      - "weight"
-      - "price"
-      - "ingredients"
+            type: string
+          description: Ингридиенты пиццы должны содержать
+          required: false
+
+    # Requests
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+          required: true
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/PizzaCreateRequest'
+          read: '#/components/schemas/PizzaReadRequest'
+          update: '#/components/schemas/PizzaUpdateRequest'
+          delete: '#/components/schemas/PizzaDeleteRequest'
+          search: '#/components/schemas/PizzaSearchRequest'
+
+    PizzaCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaCreateDto'
+
+    PizzaReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaReadDto'
+
+    PizzaUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaUpdateDto'
+
+    PizzaDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaDeleteDto'
+
+    PizzaSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            filter:
+              $ref: '#/components/schemas/PizzaSearchFilter'
