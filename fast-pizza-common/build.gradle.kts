@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.kotlin.exposed.core)
     implementation(libs.kotlin.exposed.dao)
     implementation(libs.kotlin.exposed.java.time)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.serialization.jackson)
 
     implementation(libs.logback)
     implementation(libs.jakarta.validation.api)
@@ -26,17 +26,15 @@ dependencies {
 
 openApiGenerate {
     val commonPackage = "com.github.sawafrolov.fastpizza.common"
+    val specLocation = "$rootDir/openapi.yaml".replace("\\", "/")
+    val outputLocation = "$buildDir/generated"
     generatorName.set("kotlin")
     packageName.set(commonPackage)
     apiPackage.set("$commonPackage.api")
     modelPackage.set("$commonPackage.dto")
     invokerPackage.set("$commonPackage.invoker")
-    inputSpec.set("${rootDir}\\openapi.yaml")
-
-    globalProperties.apply {
-        put("models", "true")
-        put("modelDocs", "false")
-    }
+    inputSpec.set(specLocation)
+    outputDir.set(outputLocation)
 
     configOptions.set(
         mapOf(

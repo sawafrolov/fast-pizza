@@ -127,19 +127,18 @@ components:
         code:
           type: string
           description: HTTP статус ошибки (400, 401, 404, etc.)
-          required: true
           example: 400
         message:
           type: string
           description: Сообщение об ошибке
-          required: true
           example: Bad Request
         group:
           type: string
-          required: false
         field:
           type: string
-          required: false
+      required:
+        - code
+        - message
 
     # DTO
     PizzaBaseDto:
@@ -149,27 +148,27 @@ components:
         name:
           type: string
           description: Название пиццы
-          required: true
         description:
           type: string
           description: Описание пиццы
-          required: false
         weight:
           type: integer
           format: int32
           description: Масса пиццы в граммах
-          required: true
         price:
           type: number
           format: double
           description: Цена пиццы в рублях
-          required: true
         ingredients:
           type: array
           items:
             type: string
           description: Ингридиенты пиццы (кроме теста)
-          required: true
+      required:
+        - name
+        - weight
+        - price
+        - ingredients
 
     PizzaCreateDto:
       allOf:
@@ -218,35 +217,30 @@ components:
         nameContains:
           type: string
           description: Название пиццы должно содержать
-          required: false
         descriptionContains:
           type: string
           description: Описание пиццы должно содержать
-          required: false
         weightFrom:
           type: integer
+          format: int32
           description: Масса пиццы не менее
-          required: false
         weightTo:
           type: integer
+          format: int32
           description: Масса пиццы не более
-          required: false
         priceFrom:
           type: number
           format: double
           description: Цена пиццы не менее
-          required: false
         priceTo:
           type: number
           format: double
           description: Цена пиццы не более
-          required: false
         pizzaContains:
           type: array
           items:
             type: string
           description: Ингридиенты пиццы должны содержать
-          required: false
 
     # Requests
     IRequest:
@@ -257,7 +251,6 @@ components:
           type: string
           description: Поле-дескриминатор для вычисления типа запроса
           example: create
-          required: true
       discriminator:
         propertyName: requestType
         mapping:
@@ -322,7 +315,6 @@ components:
         responseType:
           type: string
           description: Поле-дескриминатор для вычисления типа запроса
-          required: true
           example: create
         result:
           $ref: '#/components/schemas/ResponseResult'

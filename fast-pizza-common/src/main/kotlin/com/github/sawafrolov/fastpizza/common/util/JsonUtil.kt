@@ -1,4 +1,4 @@
-package com.github.sawafrolov.fastpizza.common.util.json
+package com.github.sawafrolov.fastpizza.common.util
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
