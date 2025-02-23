@@ -31,14 +31,14 @@ dependencies {
 
     implementation(libs.logback)
     implementation(libs.postgresql)
-    implementation(libs.jakarta.validation.api)
-    implementation(libs.hibernate.validator.engine)
 
     testImplementation(libs.mockk)
     testImplementation(libs.ktor.server.test.host.jvm)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }

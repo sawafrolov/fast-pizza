@@ -1,12 +1,18 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.openapi.generator)
 }
 
 repositories {
     mavenCentral()
+}
+
+sourceSets {
+    main {
+        val srcDir = "${buildDir}/generated/src/main/kotlin"
+        kotlin.srcDir(srcDir)
+    }
 }
 
 dependencies {
@@ -16,9 +22,7 @@ dependencies {
     implementation(libs.ktor.serialization.jackson)
 
     implementation(libs.logback)
-    implementation(libs.jakarta.validation.api)
-    implementation(libs.hibernate.validator.engine)
-    kapt(libs.hibernate.validator.annotation.processor)
+    implementation(libs.okhttp3)
 
     testImplementation(libs.ktor.server.test.host.jvm)
     testRuntimeOnly(libs.junit.platform.launcher)
@@ -27,14 +31,16 @@ dependencies {
 openApiGenerate {
     val commonPackage = "com.github.sawafrolov.fastpizza.common"
     val specLocation = "$rootDir/openapi.yaml".replace("\\", "/")
-    val outputLocation = "$buildDir/generated"
-    generatorName.set("kotlin")
-    packageName.set(commonPackage)
-    apiPackage.set("$commonPackage.api")
-    modelPackage.set("$commonPackage.dto")
-    invokerPackage.set("$commonPackage.invoker")
+    val outputLocation = "${buildDir}/generated"
     inputSpec.set(specLocation)
     outputDir.set(outputLocation)
+    generatorName.set("kotlin")
+    packageName.set(commonPackage)
+    apiPackage.set("$commonPackage.api.v1")
+    modelPackage.set("$commonPackage.dto")
+    invokerPackage.set("$commonPackage.invoker")
+    generateModelTests.set(true)
+    generateApiTests.set(true)
 
     configOptions.set(
         mapOf(
@@ -47,9 +53,6 @@ openApiGenerate {
 }
 
 tasks {
-    compileKotlin {
-        dependsOn(openApiGenerate)
-    }
     test {
         useJUnitPlatform()
     }
