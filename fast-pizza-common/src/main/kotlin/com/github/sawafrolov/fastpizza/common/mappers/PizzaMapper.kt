@@ -6,7 +6,7 @@ import com.github.sawafrolov.fastpizza.common.models.Pizza
 
 interface PizzaMapper {
 
-    fun mapToEntity(pizzaCreateDto: PizzaCreateDto): Pizza
+    fun mapToModel(pizzaCreateDto: PizzaCreateDto): Pizza
 
     fun mapToDto(pizza: Pizza): PizzaViewDto
 }

@@ -8,7 +8,7 @@ import java.util.UUID
 
 class PizzaMapperImpl: PizzaMapper {
 
-    override fun mapToEntity(pizzaCreateDto: PizzaCreateDto): Pizza =
+    override fun mapToModel(pizzaCreateDto: PizzaCreateDto): Pizza =
         Pizza(
             uuid = UUID.randomUUID(),
             name = pizzaCreateDto.name,
