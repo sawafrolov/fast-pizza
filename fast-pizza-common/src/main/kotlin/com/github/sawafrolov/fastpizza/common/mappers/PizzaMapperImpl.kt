@@ -1,28 +1,30 @@
 package com.github.sawafrolov.fastpizza.common.mappers
 
-import com.github.sawafrolov.fastpizza.common.dto.PizzaCreateDto
-import com.github.sawafrolov.fastpizza.common.dto.PizzaViewDto
-import com.github.sawafrolov.fastpizza.common.entities.PizzaEntity
+import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaCreateDto
+import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaViewDto
+import com.github.sawafrolov.fastpizza.common.models.Pizza
 import java.math.BigDecimal
+import java.util.UUID
 
 class PizzaMapperImpl: PizzaMapper {
 
-    override fun mapToEntity(pizzaCreateDto: PizzaCreateDto): PizzaEntity =
-        PizzaEntity.new {
-            name = pizzaCreateDto.name
-            description = pizzaCreateDto.description
-            weight = pizzaCreateDto.weight
-            price = BigDecimal(pizzaCreateDto.price)
+    override fun mapToEntity(pizzaCreateDto: PizzaCreateDto): Pizza =
+        Pizza(
+            uuid = UUID.randomUUID(),
+            name = pizzaCreateDto.name,
+            description = pizzaCreateDto.description,
+            weight = pizzaCreateDto.weight,
+            price = BigDecimal(pizzaCreateDto.price),
             ingredients = pizzaCreateDto.ingredients
-        }
+        )
 
-    override fun mapToDto(pizzaEntity: PizzaEntity): PizzaViewDto =
+    override fun mapToDto(pizza: Pizza): PizzaViewDto =
         PizzaViewDto(
-            uuid = pizzaEntity.uuid.value,
-            name = pizzaEntity.name,
-            description = pizzaEntity.description,
-            weight = pizzaEntity.weight,
-            price = pizzaEntity.price.toDouble(),
-            ingredients = pizzaEntity.ingredients
+            uuid = pizza.uuid,
+            name = pizza.name,
+            description = pizza.description,
+            weight = pizza.weight,
+            price = pizza.price.toDouble(),
+            ingredients = pizza.ingredients
         )
 }

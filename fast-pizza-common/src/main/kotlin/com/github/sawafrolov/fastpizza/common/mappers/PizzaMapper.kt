@@ -1,12 +1,12 @@
 package com.github.sawafrolov.fastpizza.common.mappers
 
-import com.github.sawafrolov.fastpizza.common.dto.PizzaCreateDto
-import com.github.sawafrolov.fastpizza.common.dto.PizzaViewDto
-import com.github.sawafrolov.fastpizza.common.entities.PizzaEntity
+import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaCreateDto
+import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaViewDto
+import com.github.sawafrolov.fastpizza.common.models.Pizza
 
 interface PizzaMapper {
 
-    fun mapToEntity(pizzaCreateDto: PizzaCreateDto): PizzaEntity
+    fun mapToEntity(pizzaCreateDto: PizzaCreateDto): Pizza
 
-    fun mapToDto(pizzaEntity: PizzaEntity): PizzaViewDto
+    fun mapToDto(pizza: Pizza): PizzaViewDto
 }
