@@ -7,13 +7,6 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    main {
-        val srcDir = "${buildDir}/generated/src/main/kotlin"
-        kotlin.srcDir(srcDir)
-    }
-}
-
 dependencies {
     implementation(libs.jackson.core)
     implementation(libs.jackson.databind)
@@ -22,22 +15,22 @@ dependencies {
 
     implementation(libs.logback)
     implementation(libs.okhttp3)
-    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 openApiGenerate {
-    val apiLocation = "com.github.sawafrolov.fastpizza.api.v1"
-    val specLocation = "$rootDir/openapi.yaml".replace("\\", "/")
-    val outputLocation = "${buildDir}/generated"
-    inputSpec.set(specLocation)
-    outputDir.set(outputLocation)
-    generatorName.set("kotlin")
-    packageName.set(apiLocation)
-    apiPackage.set(apiLocation)
-    modelPackage.set("$apiLocation.dto")
-    invokerPackage.set("$apiLocation.invoker")
-    generateModelTests.set(true)
-    generateApiTests.set(true)
+    val projectName = project.name.replace("-", "")
+    modelPackage = "com.github.sawafrolov.fastpizza.$projectName.dto"
+    inputSpec = "$projectDir/openapi.yaml".replace("\\", "/")
+    outputDir = "$projectDir/src/main/kotlin".replace("\\", "/")
+
+    generatorName = "kotlin"
+    generateModelTests = false
+
+    globalProperties.apply {
+        put("models", "")
+        put("modelDocs", "false")
+        put("lang", "kotlin")
+    }
 
     configOptions.set(
         mapOf(
@@ -47,10 +40,4 @@ openApiGenerate {
             "collectionType" to "list"
         )
     )
-}
-
-tasks {
-    test {
-        useJUnitPlatform()
-    }
 }

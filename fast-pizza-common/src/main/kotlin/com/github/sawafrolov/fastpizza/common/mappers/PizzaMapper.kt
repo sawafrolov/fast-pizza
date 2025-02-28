@@ -1,8 +1,8 @@
 package com.github.sawafrolov.fastpizza.common.mappers
 
-import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaCreateDto
-import com.github.sawafrolov.fastpizza.api.v1.dto.PizzaViewDto
 import com.github.sawafrolov.fastpizza.common.models.Pizza
+import com.github.sawafrolov.fastpizza.fastpizzaapi.api.v1.dto.PizzaCreateDto
+import com.github.sawafrolov.fastpizza.fastpizzaapi.api.v1.dto.PizzaViewDto
 
 interface PizzaMapper {
 
