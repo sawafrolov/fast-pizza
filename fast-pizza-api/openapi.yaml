@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: Pizza API
+  description: CRUD API для сущности пиццы
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080/api/v1
+
+paths:
+  /pizza/create:
+    post:
+      summary: Создание пиццы
+      description: Создание пиццы на основе DTO
+      operationId: createPizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaCreateRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PizzaCreateResponse'
+
+  /pizza/read:
+    post:
+      summary: Получение данных пиццы
+      description: Получение данных пиццы по uuid
+      operationId: readPizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaReadRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PizzaReadResponse'
+
+  /pizza/update:
+    post:
+      summary: Обновление данных пиццы
+      description: Обновление данных пиццы по uuid на основе DTO
+      operationId: updatePizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PizzaUpdateResponse'
+
+  /pizza/delete:
+    post:
+      summary: Удаление пиццы
+      description: Удаление пиццы по uuid
+      operationId: deletePizza
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PizzaDeleteResponse'
+
+  /pizza/search:
+    post:
+      summary: Поиск пицц
+      description: Поиск пицц по заданным критериям
+      operationId: searchPizzas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PizzaSearchRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PizzaSearchResponse'
+
+components:
+  schemas:
+
+    # UUID
+    PizzaId:
+      type: string
+      format: uuid
+      description: uuid пиццы
+
+    # Версия оптимистичной блокировки
+    Lock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    # Сведения об ошибке
+    Error:
+      type: object
+      description: Сведения об ошибке
+      properties:
+        code:
+          type: string
+          description: HTTP статус ошибки (400, 401, 404, etc.)
+          example: 400
+        message:
+          type: string
+          description: Сообщение об ошибке
+          example: Bad Request
+        group:
+          type: string
+        field:
+          type: string
+      required:
+        - code
+        - message
+
+    # DTO
+    PizzaBaseDto:
+      type: object
+      description: Общее для всех DTO пиццы
+      properties:
+        name:
+          type: string
+          description: Название пиццы
+        description:
+          type: string
+          description: Описание пиццы
+        weight:
+          type: integer
+          format: int32
+          description: Масса пиццы в граммах
+        price:
+          type: number
+          format: double
+          description: Цена пиццы в рублях
+        ingredients:
+          type: array
+          items:
+            type: string
+          description: Ингридиенты пиццы (кроме теста)
+      required:
+        - name
+        - weight
+        - price
+        - ingredients
+
+    PizzaCreateDto:
+      allOf:
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaReadDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+
+    PizzaUpdateDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+            lock:
+              $ref: '#/components/schemas/Lock'
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaDeleteDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+            lock:
+              $ref: '#/components/schemas/Lock'
+
+    PizzaViewDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              $ref: '#/components/schemas/PizzaId'
+            lock:
+              $ref: '#/components/schemas/Lock'
+        - $ref: '#/components/schemas/PizzaBaseDto'
+
+    PizzaSearchFilter:
+      type: object
+      description: Критерии фильтрации для поиска пицц
+      properties:
+        nameContains:
+          type: string
+          description: Название пиццы должно содержать
+        descriptionContains:
+          type: string
+          description: Описание пиццы должно содержать
+        weightFrom:
+          type: integer
+          format: int32
+          description: Масса пиццы не менее
+        weightTo:
+          type: integer
+          format: int32
+          description: Масса пиццы не более
+        priceFrom:
+          type: number
+          format: double
+          description: Цена пиццы не менее
+        priceTo:
+          type: number
+          format: double
+          description: Цена пиццы не более
+        pizzaContains:
+          type: array
+          items:
+            type: string
+          description: Ингридиенты пиццы должны содержать
+
+    # Requests
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/PizzaCreateRequest'
+          read: '#/components/schemas/PizzaReadRequest'
+          update: '#/components/schemas/PizzaUpdateRequest'
+          delete: '#/components/schemas/PizzaDeleteRequest'
+          search: '#/components/schemas/PizzaSearchRequest'
+
+    PizzaCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaCreateDto'
+
+    PizzaReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaReadDto'
+
+    PizzaUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaUpdateDto'
+
+    PizzaDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaDeleteDto'
+
+    PizzaSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            filter:
+              $ref: '#/components/schemas/PizzaSearchFilter'
+
+    # Responses
+    ResponseResult:
+      type: string
+      description: Результат обработки запроса
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/PizzaCreateResponse'
+          read: '#/components/schemas/PizzaReadResponse'
+          update: '#/components/schemas/PizzaUpdateResponse'
+          delete: '#/components/schemas/PizzaDeleteResponse'
+          search: '#/components/schemas/PizzaSearchResponse'
+
+    PizzaSingleResponse:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом
+          properties:
+            pizza:
+              $ref: '#/components/schemas/PizzaViewDto'
+
+    PizzaMultiResponse:
+      allOf:
+        - type: object
+          description: Ответ со списком объектов
+          properties:
+            pizzas:
+              type: array
+              items:
+                $ref: '#/components/schemas/PizzaViewDto'
+
+    PizzaCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaSingleResponse'
+
+    PizzaSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/PizzaMultiResponse'

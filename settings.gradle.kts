@@ -1,7 +1,7 @@
 rootProject.name = "fast-pizza"
 
+include("fast-pizza-api")
 include("fast-pizza-common")
-include("orders")
 
 dependencyResolutionManagement {
     versionCatalogs {
